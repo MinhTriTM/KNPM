@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giáo Trình TOÀN DIỆN Kỹ Nghệ Phần Mềm - Ôn Thi Điểm Tối Đa</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+    </script>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #e53e3e;
+            --bg-light: #f7fafc;
+            --text-main: #2d3748;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            page-break-after: avoid;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 8px;
+            background-color: var(--bg-light);
+            padding-left: 10px;
+            border-left: 6px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--secondary);
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 4px;
+        }
+
+        p, li { font-size: 1.1rem; }
+        
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            page-break-inside: avoid;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) { background-color: var(--bg-light); }
+        tr:hover { background-color: #ebf8ff; }
+
+        /* Boxes */
+        .box {
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+        .tip-box {
+            background-color: #ebf8ff;
+            border-left: 5px solid #3182ce;
+        }
+        .warn-box {
+            background-color: #fffaf0;
+            border-left: 5px solid #dd6b20;
+        }
+        .def-box {
+            background-color: #f0fff4;
+            border-left: 5px solid #38a169;
+        }
+        .box h4 { margin-top: 0; color: inherit; }
+
+        /* Mermaid */
+        .mermaid {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            page-break-inside: avoid;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Keyword highlight */
+        .kw {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .code-inline {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #c53030;
+        }
+
+        /* Print Media */
+        @media print {
+            body { font-size: 11pt; }
+            .container { max-width: 100%; padding: 0 15mm; }
+            .page-break { page-break-before: always; }
+            h1, h2, h3 { page-break-after: avoid; }
+            table, .mermaid, .box { page-break-inside: avoid; }
+            a[href]:after { content: none !important; }
+            /* Cố gắng ép in background color nếu trình duyệt hỗ trợ (Chrome cần user tự tick) */
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GIÁO TRÌNH TOÀN DIỆN KỸ NGHỆ PHẦN MỀM</h1>
+        <p style="text-align: center; font-style: italic; color: #718096;">Bách khoa toàn thư siêu tốc - Phủ 100% mọi dạng đề thi Đại học</p>
+
+        <div class="tip-box">
+            <h4>💡 Mục tiêu của tài liệu này:</h4>
+            <p>Bản nâng cấp này đi <strong>sâu vào bản chất học thuật</strong>, bao gồm đầy đủ các pha SDLC, phân loại Yêu cầu, Kiến trúc, Độ kết dính, Độ bao phủ trong Kiểm thử và đầy đủ <strong>5 loại biểu đồ UML cốt lõi + ERD</strong>. Hãy đọc kỹ các <span class="kw">Keyword màu đỏ</span> để làm trắc nghiệm và xem kỹ ảnh sơ đồ để làm tự luận.</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 1: TỔNG QUAN & QUY TRÌNH            -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 1: TỔNG QUAN & CÁC MÔ HÌNH PHÁT TRIỂN (SDLC)</h2>
+        
+        <h3>1.1. Kỹ nghệ phần mềm & Khủng hoảng phần mềm</h3>
+        <p><strong>Khủng hoảng phần mềm (Software Crisis):</strong> Là tình trạng các dự án phần mềm vượt quá ngân sách, trễ tiến độ, chất lượng kém và không đáp ứng yêu cầu. Nguyên nhân: Thiếu phương pháp luận, quản lý kém.</p>
+        <p><strong>Định nghĩa SE (Software Engineering):</strong> Là việc áp dụng một cách tiếp cận có hệ thống, kỷ luật và định lượng cho sự phát triển, vận hành và bảo trì phần mềm. Nó giải quyết khủng hoảng phần mềm.</p>
+
+        <h3>1.2. Vòng đời phát triển phần mềm (SDLC - Software Development Life Cycle)</h3>
+        <p>Các pha bắt buộc trong bất kỳ dự án phần mềm nào:</p>
+        <ol>
+            <li><strong>Khảo sát tính khả thi (Feasibility Study):</strong> Khả thi kinh tế, kỹ thuật, thời gian. Liệu có nên làm không?</li>
+            <li><strong>Phân tích & Đặc tả yêu cầu (Requirement Analysis & Specification):</strong> Lấy yêu cầu, viết tài liệu SRS. Trả lời câu hỏi <em>"Làm cái gì?"</em></li>
+            <li><strong>Thiết kế (Design):</strong> Kiến trúc, CSDL, Giao diện, OOP. Trả lời câu hỏi <em>"Làm như thế nào?"</em></li>
+            <li><strong>Cài đặt (Implementation/Coding):</strong> Viết code.</li>
+            <li><strong>Kiểm thử (Testing):</strong> Đảm bảo hệ thống chạy đúng yêu cầu, không có lỗi.</li>
+            <li><strong>Triển khai (Deployment):</strong> Đưa sản phẩm cho khách hàng dùng.</li>
+            <li><strong>Bảo trì (Maintenance):</strong> Sửa lỗi phát sinh, nâng cấp tính năng.</li>
+        </ol>
+
+        <h3>1.3. Bảng So Sánh Chi Tiết Các Mô Hình Phát Triển</h3>
+        <table>
+            <tr>
+                <th>Mô hình</th>
+                <th>Đặc điểm chính</th>
+                <th>Ưu điểm</th>
+                <th>Nhược điểm & Khi nào dùng?</th>
+            </tr>
+            <tr>
+                <td><strong>Waterfall<br>(Thác nước)</strong></td>
+                <td>Chạy tuần tự 1 chiều từ trên xuống. Không quay lui.</td>
+                <td>Dễ quản lý, mốc thời gian rõ ràng, tài liệu đầy đủ.</td>
+                <td>Không chịu được thay đổi. Khách hàng thấy sản phẩm rất trễ.<br><em>Dùng: Dự án nhỏ, yêu cầu cố định (vệ tinh, kế toán).</em></td>
+            </tr>
+            <tr>
+                <td><strong>V-Model<br>(Chữ V)</strong></td>
+                <td>Mở rộng của Thác nước. Mỗi pha phát triển đi kèm 1 pha kiểm thử tương ứng.</td>
+                <td>Phát hiện lỗi cực sớm, chất lượng cực cao.</td>
+                <td>Rất cứng nhắc, tốn kém chi phí test.<br><em>Dùng: Y tế, Hàng không, Quân sự.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Prototype<br>(Bản mẫu)</strong></td>
+                <td>Xây dựng bản nháp nhanh để khách hàng xem thử rồi mới làm thật.</td>
+                <td>Khách hàng dễ hình dung, chốt yêu cầu chính xác.</td>
+                <td>Khách tưởng bản nháp là bản thật, code bản nháp thường ẩu.<br><em>Dùng: UI/UX phức tạp, khách chưa rõ mình muốn gì.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Spiral<br>(Xoắn ốc)</strong></td>
+                <td>Chia dự án thành nhiều vòng. Mỗi vòng tập trung vào <strong>Phân tích rủi ro (Risk Analysis)</strong>.</td>
+                <td>Quản lý rủi ro xuất sắc.</td>
+                <td>Rất phức tạp, cần chuyên gia phân tích rủi ro giỏi.<br><em>Dùng: Dự án cực lớn, vốn khủng, rủi ro cao.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Agile / Scrum<br>(Linh hoạt)</strong></td>
+                <td>Lặp và tăng trưởng (Iterative & Incremental) qua các Sprint (2-4 tuần).</td>
+                <td>Thích ứng thay đổi lập tức, có phần mềm chạy được liên tục.</td>
+                <td>Khó ước lượng tổng chi phí, tài liệu sơ sài.<br><em>Dùng: Startup, sản phẩm thị trường biến động nhanh.</em></td>
+            </tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 2: PHÂN TÍCH YÊU CẦU                -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 2: PHÂN TÍCH & ĐẶC TẢ YÊU CẦU (REQUIREMENT ENGINEERING)</h2>
+
+        <h3>2.1. Phân loại Yêu cầu</h3>
+        <p>Đây là phần cực kỳ hay ra trong trắc nghiệm, yêu cầu phân biệt các loại:</p>
+        <ul>
+            <li><span class="kw">Yêu cầu Chức năng (Functional Requirements):</span> Hệ thống CÓ THỂ LÀM GÌ. (Ví dụ: Hệ thống phải cho phép tìm kiếm sách, Phải gửi email OTP, Phải tính toán thuế).</li>
+            <li><span class="kw">Yêu cầu Phi chức năng (Non-Functional Requirements):</span> RÀNG BUỘC về cách hệ thống hoạt động (chất lượng). Bao gồm:
+                <ul>
+                    <li><em>Hiệu năng (Performance):</em> Phản hồi dưới 2 giây.</li>
+                    <li><em>Bảo mật (Security):</em> Mã hóa mật khẩu MD5, chống SQL Injection.</li>
+                    <li><em>Độ khả dụng (Usability):</em> Người già cũng dùng được sau 1h hướng dẫn.</li>
+                    <li><em>Khả năng mở rộng (Scalability):</em> Chịu được 10.000 CCU.</li>
+                </ul>
+            </li>
+            <li><span class="kw">Yêu cầu Miền ứng dụng (Domain Requirements):</span> Luật riêng của ngành. (Ví dụ ngành y tế: Dữ liệu bệnh án không được xóa mà chỉ ẩn).</li>
+        </ul>
+
+        <h3>2.2. Tài liệu SRS (Software Requirements Specification)</h3>
+        <p>Bản hợp đồng kỹ thuật giữa Khách hàng và Nhóm phát triển. Một SRS tốt phải: <span class="kw">Đúng, Đầy đủ, Nhất quán (Không mâu thuẫn), Có thể kiểm chứng (Testable), Không mơ hồ (Unambiguous)</span>.</p>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 3: THIẾT KẾ PHẦN MỀM & KIẾN TRÚC    -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 3: THIẾT KẾ PHẦN MỀM CƠ BẢN</h2>
+
+        <h3>3.1. Các Mẫu Kiến Trúc Phổ Biến (Architectural Patterns)</h3>
+        <ul>
+            <li><strong>Kiến trúc Phân lớp (Layered/N-Tier):</strong> Tách thành Presentation (Giao diện), Business Logic (Xử lý), Data Access (CSDL). Dễ bảo trì, dễ đổi 1 lớp không ảnh hưởng lớp khác.</li>
+            <li><strong>Kiến trúc MVC (Model - View - Controller):</strong> Chuyên dùng cho Web. 
+                <br><code>Model</code>: Quản lý dữ liệu. 
+                <br><code>View</code>: Hiển thị giao diện. 
+                <br><code>Controller</code>: Nhận request từ View, gọi Model, cập nhật lại View.</li>
+            <li><strong>Kiến trúc Client - Server:</strong> Tách biệt máy khách (yêu cầu dịch vụ) và máy chủ (cung cấp dịch vụ).</li>
+            <li><strong>Monolithic (Nguyên khối) vs Microservices (Vi dịch vụ):</strong> Monolithic gom tất cả code vào 1 cục. Microservices chia nhỏ phần mềm thành hàng chục dịch vụ độc lập chạy riêng (như Shopee, Netflix).</li>
+        </ul>
+
+        <div class="def-box">
+            <h4>🧠 Nguyên lý Thiết kế vàng: Độ Kết dính & Độ Ghép nối</h4>
+            <p><strong>Độ kết dính (Cohesion):</strong> Sự liên kết giữa các thành phần <em>bên trong</em> một Module. ➔ <strong>Phải CAO (High Cohesion)</strong>. (Một class chỉ nên làm đúng 1 việc - Single Responsibility).</p>
+            <p><strong>Độ ghép nối (Coupling):</strong> Sự phụ thuộc <em>giữa</em> các Module khác nhau. ➔ <strong>Phải THẤP (Low Coupling)</strong>. (Đổi code module A không làm hỏng module B).</p>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 4: SƠ ĐỒ UML & CSDL CHI TIẾT        -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 4: ĐẠI CHIẾN SƠ ĐỒ UML & ERD (THỰC HÀNH TỰ LUẬN)</h2>
+
+        <!-- ERD -->
+        <h3>4.1. Chuẩn hóa & Sơ đồ Thực thể Liên kết (ERD)</h3>
+        <p><strong>3 Dạng Chuẩn Hóa CSDL (Normalization):</strong></p>
+        <ul>
+            <li><strong>1NF:</strong> Không có thuộc tính đa trị (1 ô chứa nhiều giá trị) hoặc thuộc tính phức hợp. Mỗi ô dữ liệu là nguyên tố.</li>
+            <li><strong>2NF:</strong> Đạt 1NF + Không có phụ thuộc một phần vào khóa chính (Các cột không khóa phải phụ thuộc vào <em>toàn bộ</em> khóa chính, áp dụng khi khóa chính có từ 2 cột trở lên).</li>
+            <li><strong>3NF:</strong> Đạt 2NF + Không có phụ thuộc bắc cầu (Cột không khóa A suy ra Cột không khóa B).</li>
+        </ul>
+
+        <p><strong>Ví dụ ERD phức tạp: Hệ thống Bệnh viện</strong></p>
+        <p><em>(Lưu ý: Mermaid erDiagram không hỗ trợ vẽ thuộc tính đa trị/dẫn xuất hoàn hảo như Visio, ở đây dùng định dạng chuẩn)</em></p>
+        <div class="mermaid">
+            erDiagram
+                BENH_NHAN ||--o{ KHAM_BENH : "thực hiện"
+                BAC_SI ||--o{ KHAM_BENH : "phụ trách"
+                KHAM_BENH ||--o{ DON_THUOC : "kê đơn"
+                THUOC ||--o{ CHITIET_DON_THUOC : "thuộc"
+                DON_THUOC ||--|{ CHITIET_DON_THUOC : "chứa"
+
+                BENH_NHAN {
+                    string MaBN PK
+                    string HoTen
+                    date NgaySinh
+                    string DienThoai "Đa trị (Có thể nhiều số)"
+                }
+                BAC_SI {
+                    string MaBS PK
+                    string TenBS
+                    string ChuyenKhoa
+                }
+                KHAM_BENH {
+                    string MaKham PK
+                    string MaBN FK
+                    string MaBS FK
+                    date NgayKham
+                    string ChanDoan
+                }
+                DON_THUOC {
+                    string MaDon PK
+                    string MaKham FK
+                    float TongTien "Thuộc tính dẫn xuất (Tính từ Chi tiết)"
+                }
+                CHITIET_DON_THUOC {
+                    string MaDon PK,FK
+                    string MaThuoc PK,FK
+                    int SoLuong
+                    string CachDung
+                }
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- USE CASE -->
+        <h3>4.2. Sơ đồ Usecase - Phân tích Include & Extend</h3>
+        <p>Nhắc lại cực mạnh: <strong>Include</strong> (Mũi tên HƯỚNG VÀO Usecase bị gọi) và <strong>Extend</strong> (Mũi tên HƯỚNG VỀ Usecase gốc).</p>
+        <div class="mermaid">
+            flowchart LR
+                Actor1([Sinh Viên])
+                Actor2([Giảng Viên])
+                Actor3([Hệ Thống Ngân Hàng])
+
+                subgraph QL_HocTap[Hệ Thống Quản Lý Đào Tạo]
+                    direction TB
+                    UC1(Đăng nhập)
+                    UC2(Đăng ký học phần)
+                    UC3(Thanh toán học phí)
+                    UC4(Gửi email cảnh báo nợ)
+                    UC5(Nhập điểm)
+                    
+                    %% Include: Đăng ký HP bắt buộc phải Đăng nhập
+                    UC2 ..->|&lt;&lt;include&gt;&gt;| UC1
+                    UC5 ..->|&lt;&lt;include&gt;&gt;| UC1
+                    
+                    %% Extend: Thanh toán xong CÓ THỂ in biên lai (ko bắt buộc)
+                    UC_In(In Biên Lai)
+                    UC_In ..->|&lt;&lt;extend&gt;&gt;| UC3
+
+                    %% Extend: Nếu nợ học phí thì CÓ THỂ gửi email cảnh báo
+                    UC4 ..->|&lt;&lt;extend&gt;&gt;| UC2
+                end
+
+                Actor1 --- UC2
+                Actor1 --- UC3
+                Actor2 --- UC5
+                Actor3 --- UC3
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- CLASS DIAGRAM -->
+        <h3>4.3. Sơ đồ Lớp (Class Diagram) - OOP Chuyên sâu</h3>
+        <p><strong>Visibility (Phạm vi truy cập):</strong> <code>+</code> (Public), <code>-</code> (Private), <code>#</code> (Protected), <code>~</code> (Package).</p>
+        <p><strong>Các loại quan hệ:</strong> 
+            <br>1. Dependency (Phụ thuộc): Nét đứt (A dùng B làm tham số hàm).
+            <br>2. Association (Kết hợp): Nét liền (A có thuộc tính là B).
+            <br>3. Aggregation (Tập hợp - Hình thoi trắng): A chứa B, B sống độc lập.
+            <br>4. Composition (Cấu thành - Hình thoi đen): A chứa B, A chết B chết.
+            <br>5. Generalization (Kế thừa - Tam giác trắng): IS-A.
+        </p>
+
+        <div class="mermaid">
+            classDiagram
+                %% Composition (Đại học chứa Khoa, ĐH sập thì Khoa mất)
+                DaiHoc *-- Khoa : chứa (1..*)
+                
+                %% Aggregation (Khoa chứa Giảng Viên, Khoa sập Giảng viên sang chỗ khác dạy)
+                Khoa o-- GiangVien : có (1..*)
+                
+                %% Inheritance (Kế thừa)
+                GiangVien &lt;|-- GiangVienCoHuu
+                GiangVien &lt;|-- GiangVienThinhGiang
+
+                %% Association
+                GiangVien "1" -- "*" MonHoc : giảng dạy
+
+                class DaiHoc {
+                    - string tenTruong
+                    + thanhLapKhoa()
+                }
+
+                class Khoa {
+                    - string maKhoa
+                    - string tenKhoa
+                    + tuyenDung()
+                }
+
+                class GiangVien {
+                    &lt;&lt;abstract&gt;&gt;
+                    # string maGV
+                    + string hoTen
+                    + tinhLuong()* float
+                }
+
+                class GiangVienCoHuu {
+                    - float heSoLuong
+                    + tinhLuong() float
+                }
+
+                class MonHoc {
+                    - string maMH
+                    - int soTinChi
+                }
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SEQUENCE DIAGRAM -->
+        <h3>4.4. Sơ đồ Tuần tự (Sequence Diagram) - Có Fragments (Alt/Loop)</h3>
+        <p>Sử dụng <strong>alt</strong> cho cấu trúc If/Else, <strong>opt</strong> cho cấu trúc If không có Else, <strong>loop</strong> cho vòng lặp (For/While).</p>
+        <div class="mermaid">
+            sequenceDiagram
+                actor KH as Khách hàng
+                participant GiaoDien as Giao Diện Rút Tiền
+                participant HeThong as Máy ATM (Controller)
+                participant NganHang as Core Banking
+
+                KH->>GiaoDien: 1. Nhập số tiền cần rút
+                GiaoDien->>HeThong: 2. Gửi yêu cầu rút tiền (amount)
+                HeThong->>NganHang: 3. Kiểm tra số dư tài khoản
+                NganHang-->>HeThong: 4. Trả về (balance)
+                
+                alt balance >= amount
+                    HeThong->>HeThong: 5. Trừ tiền tài khoản
+                    HeThong->>NganHang: 6. Cập nhật số dư mới
+                    HeThong-->>GiaoDien: 7. Báo thành công
+                    GiaoDien->>KH: 8. Nhả tiền
+                    
+                    opt Khách chọn in biên lai
+                        KH->>GiaoDien: 9. Bấm in
+                        GiaoDien->>KH: 10. Nhả biên lai
+                    end
+                else balance < amount
+                    HeThong-->>GiaoDien: 5. Báo lỗi số dư không đủ
+                    GiaoDien-->>KH: 6. Hiển thị màn hình lỗi
+                end
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ACTIVITY DIAGRAM -->
+        <h3>4.5. Sơ đồ Hoạt động (Activity Diagram)</h3>
+        <p>Mô tả luồng công việc (workflow), thuật toán hoặc luồng nghiệp vụ. Rất giống lưu đồ thuật toán. Có biểu diễn phân làn (Swimlanes) thể hiện ai làm việc gì.</p>
+        <div class="mermaid">
+            stateDiagram-v2
+                %% Mermaid dùng stateDiagram để vẽ activity tốt hơn trong HTML
+                state "Khách Hàng" as KH {
+                    state "Chọn hàng vào giỏ" as S1
+                    state "Bấm thanh toán" as S2
+                }
+                
+                state "Hệ Thống" as HT {
+                    state "Tính tổng tiền" as S3
+                    state if_state &lt;&lt;choice&gt;&gt;
+                    state "Hủy đơn" as S4
+                    state "Lưu đơn hàng" as S5
+                }
+                
+                state "Thủ Kho" as Kho {
+                    state "Gói hàng" as S6
+                    state "Giao Shipper" as S7
+                }
+
+                [*] --> S1
+                S1 --> S2
+                S2 --> S3
+                S3 --> if_state
+                if_state --> S4: Thanh toán lỗi
+                if_state --> S5: Thanh toán OK
+                S4 --> [*]
+                S5 --> S6
+                S6 --> S7
+                S7 --> [*]
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- STATE DIAGRAM -->
+        <h3>4.6. Sơ đồ Trạng thái (State Machine Diagram)</h3>
+        <p>Dùng để mô tả vòng đời của MỘT đối tượng duy nhất (VD: Vòng đời của Đơn hàng, của Phòng khách sạn, của Bài viết).</p>
+        <div class="mermaid">
+            stateDiagram-v2
+                [*] --> Mới_Tao : Bấm Mua hàng
+                
+                state Mới_Tao {
+                    [*] --> Chờ_Thanh_Toán
+                }
+                
+                Mới_Tao --> Đã_Hủy : Hết hạn / Khách Hủy
+                Mới_Tao --> Đã_Thanh_Toán : Trả tiền thành công
+                
+                Đã_Thanh_Toán --> Đang_Giao_Hàng : Xuất kho
+                
+                Đang_Giao_Hàng --> Giao_Thành_Công : Khách nhận
+                Đang_Giao_Hàng --> Trả_Hàng : Khách từ chối
+                
+                Giao_Thành_Công --> [*]
+                Đã_Hủy --> [*]
+                Trả_Hàng --> [*]
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 5: KIỂM THỬ PHẦN MỀM (TESTING)      -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 5: KIỂM THỬ PHẦN MỀM CỰC KỲ CHI TIẾT</h2>
+
+        <h3>5.1. Verification vs Validation (V&V)</h3>
+        <ul>
+            <li><strong>Verification (Kiểm chứng):</strong> <em>"Are we building the product RIGHT?"</em> (Làm sản phẩm có đúng theo thiết kế, chuẩn code không?). Thực hiện bằng cách Review code, Inspect tài liệu.</li>
+            <li><strong>Validation (Thẩm định):</strong> <em>"Are we building the RIGHT product?"</em> (Làm có đúng cái khách hàng cần không?). Thực hiện bằng cách chạy phần mềm (Testing).</li>
+        </ul>
+
+        <h3>5.2. Kiểm thử Hộp đen (Black-box / Functional Testing)</h3>
+        <p>Không nhìn code, chỉ ném Input và kiểm tra Output. Hai kỹ thuật "ăn điểm" thi:</p>
+        <ul>
+            <li><strong>Phân lớp tương đương (Equivalence Partitioning):</strong> Chia dữ liệu đầu vào thành các lớp có tính chất giống nhau. Chỉ lấy 1 giá trị đại diện mỗi lớp để test. <br><em>VD: Tuổi từ 18-60. Chia 3 lớp: < 18 (Lỗi), 18-60 (Hợp lệ), > 60 (Lỗi). Test với 3 số: 10, 30, 70.</em></li>
+            <li><strong>Phân tích giá trị biên (Boundary Value Analysis):</strong> Bug thường trốn ở ranh giới. Test ngay tại biên, sát dưới biên và sát trên biên. <br><em>VD: Biên 18 và 60. Test với các số: 17, 18, 19 và 59, 60, 61.</em></li>
+        </ul>
+
+        <h3>5.3. Kiểm thử Hộp trắng (White-box / Structural Testing)</h3>
+        <p>Test dựa trên việc đọc cấu trúc code bên trong. Sinh viên IT phải biết các <strong>Mức độ bao phủ (Coverage)</strong>:</p>
+        <div class="warn-box">
+            <h4>🧠 Phân biệt các loại Coverage:</h4>
+            <ul>
+                <li><strong>Độ bao phủ câu lệnh (Statement Coverage):</strong> Test case sao cho mọi dòng code đều được chạy qua ÍT NHẤT 1 LẦN. Rất yếu, không phát hiện được lỗi ở nhánh <code>else</code> bị thiếu.</li>
+                <li><strong>Độ bao phủ nhánh (Branch/Decision Coverage):</strong> Test case sao cho mọi mũi tên (T/F) trong lệnh If/Else, Switch đều được đi qua ít nhất 1 lần. Đạt Branch thì chắc chắn đạt Statement.</li>
+                <li><strong>Độ bao phủ đường đi (Path Coverage):</strong> Test case chạy hết TẤT CẢ các con đường có thể có từ đầu đến cuối hàm. Đây là tiêu chuẩn mạnh nhất nhưng tốn thời gian nhất. Số đường đi thường bằng với Độ phức tạp Cyclomatic (V(G)).</li>
+            </ul>
+        </div>
+
+        <h3>5.4. Đồ thị luồng điều khiển (Control Flow Graph) & Độ phức tạp Cyclomatic</h3>
+        <p>Công thức tính số Test case cần thiết tối đa cho Path Coverage:</p>
+        <p class="code-inline" style="font-size: 1.5em; text-align: center; display: block; margin: 10px 0;">V(G) = E - N + 2</p>
+        <p>Trong đó: <strong>E</strong> = Số cạnh (mũi tên), <strong>N</strong> = Số node (điểm), <strong>P</strong> = Số node điều kiện (node rẽ nhánh). Cách tính nhanh khác: <code>V(G) = P + 1</code>.</p>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 6: BẢO TRÌ & QUẢN LÝ DỰ ÁN          -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 6: BẢO TRÌ VÀ QUẢN LÝ DỰ ÁN</h2>
+
+        <h3>6.1. 4 Loại Bảo Trì Phần Mềm (Maintenance)</h3>
+        <table>
+            <tr>
+                <th>Loại bảo trì</th>
+                <th>Giải thích chi tiết</th>
+                <th>Tỷ lệ % (Tương đối)</th>
+            </tr>
+            <tr>
+                <td><span class="kw">Sửa lỗi (Corrective)</span></td>
+                <td>Sửa các lỗi (bug) phát hiện ra sau khi hệ thống đã đưa vào sử dụng thực tế.</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td><span class="kw">Thích ứng (Adaptive)</span></td>
+                <td>Sửa đổi phần mềm để nó chạy được trên môi trường mới (Nâng cấp Win 10 lên Win 11, đổi Server sang Cloud). Không đổi tính năng.</td>
+                <td>25%</td>
+            </tr>
+            <tr>
+                <td><span class="kw">Hoàn thiện (Perfective)</span></td>
+                <td>Thêm tính năng MỚI theo yêu cầu khách hàng, hoặc làm cho tính năng cũ chạy mượt hơn, UI đẹp hơn.</td>
+                <td><strong>50% (Cao nhất)</strong></td>
+            </tr>
+            <tr>
+                <td><span class="kw">Phòng ngừa (Preventive)</span></td>
+                <td>Refactor code (viết lại code cho sạch đẹp), tối ưu hóa cấu trúc để tránh rủi ro trong tương lai dù hiện tại chưa có lỗi.</td>
+                <td>5%</td>
+            </tr>
+        </table>
+
+        <h3>6.2. Quản lý dự án - Ước lượng COCOMO</h3>
+        <p>Mô hình COCOMO dùng để ước lượng Thời gian (Tháng) và Công sức (Số người/tháng) dựa trên số dòng lệnh ước tính (KLOC - Kilo Lines of Code).</p>
+        <p>Gồm 3 chế độ: <em>Organic (Nhóm nhỏ, quen thuộc)</em>, <em>Semi-detached (Trung bình)</em>, <em>Embedded (Hệ thống nhúng phức tạp, phần cứng khắt khe)</em>.</p>
+
+        <div class="page-break"></div>
+
+        <!-- ========================================== -->
+        <!-- CHƯƠNG 7: NGÂN HÀNG 100 CÂU HỎI LÝ THUYẾT TRỌNG TÂM -->
+        <!-- ========================================== -->
+        <h2>CHƯƠNG 7: NGÂN HÀNG 100 CÂU HỎI LÝ THUYẾT ĐỂ LẤY 5 ĐIỂM</h2>
+        <div class="tip-box">
+            <h4>💡 Mục tiêu:</h4>
+            <p>Học thuộc lòng bộ 100 câu hỏi này để đảm bảo ăn trọn điểm phần lý thuyết (thường chiếm 5 điểm) trong bài thi tự luận hoặc trắc nghiệm.</p>
+        </div>
+
+        <h3>CHƯƠNG 1: GIỚI THIỆU CÔNG NGHỆ PHẦN MỀM (Câu 1 - Câu 15)</h3>
+        <p class="kw">1. Phần mềm được định nghĩa như thế nào dưới góc nhìn chuyên viên tin học?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là tập hợp các chương trình máy tính, cấu trúc dữ liệu và các tài liệu liên quan.</p>
+        <p class="kw">2. Công nghệ phần mềm (Software Engineering) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là việc áp dụng một cách tiếp cận có hệ thống, có kỷ luật và có thể định lượng được đối với việc phát triển, vận hành và bảo trì phần mềm.</p>
+        <p class="kw">3. Khủng hoảng phần mềm là hiện tượng gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là hiện tượng các dự án phần mềm vượt quá ngân sách, chậm tiến độ, chất lượng kém và không đáp ứng được yêu cầu của người dùng.</p>
+        <p class="kw">4. Hãy nêu 3 tiêu chí mà người sử dụng đánh giá chất lượng phần mềm?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tính đúng đắn, tính tiện dụng, tính hiệu quả, tính tương thích, tính bảo trì được.</p>
+        <p class="kw">5. Nêu 3 đặc trưng cơ bản của phần mềm khác với phần cứng?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> (1) Phần mềm là logic/trừu tượng, không phải vật lý; (2) Không bị "hao mòn" nhưng bị thoái hóa; (3) Thường được xây dựng theo yêu cầu riêng (custom-built) chứ không phải lắp ráp từ các linh kiện có sẵn.</p>
+        <p class="kw">6. Công nghệ phần mềm nghiên cứu những vấn đề gì cốt lõi?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Phương pháp, quy trình và công cụ để xây dựng phần mềm.</p>
+        <p class="kw">7. "Stakeholder" (Người có liên quan) trong một dự án phần mềm là những ai?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Khách hàng, người dùng cuối, nhà quản lý, và đội ngũ phát triển (Dev, Tester, BA...).</p>
+        <p class="kw">8. Phần mềm tốt cần thỏa mãn 4 thuộc tính (properties) quan trọng nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Khả năng bảo trì (Maintainability), Sự tin cậy và An toàn (Dependability and Security), Tính hiệu quả (Efficiency), và Tính chấp nhận được (Acceptability).</p>
+        <p class="kw">9. Mã nguồn mở (Open Source) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là phần mềm mà mã nguồn của nó được công bố công khai, cho phép mọi người sử dụng, sửa đổi và phân phối lại.</p>
+        <p class="kw">10. Thế nào là hệ thống "Legacy" (Hệ thống di sản)?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là các hệ thống phần mềm cũ kĩ, lớn, khó bảo trì nhưng vẫn đang được sử dụng vì mang lại giá trị nghiệp vụ thiết yếu cho tổ chức.</p>
+        <p class="kw">11. Có những loại ứng dụng phần mềm cơ bản nào? (Kể tên 3 loại)</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Ứng dụng web, ứng dụng di động (mobile), phần mềm nhúng (embedded software), trí tuệ nhân tạo (AI).</p>
+        <p class="kw">12. Đạo đức nghề nghiệp của kỹ sư phần mềm đòi hỏi điều gì về "Bảo mật"?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Phải tôn trọng và bảo vệ tính bảo mật thông tin của khách hàng/người sử dụng dù có ký thỏa thuận bảo mật (NDA) hay không.</p>
+        <p class="kw">13. Lỗi phần mềm (Software Bug) thường do đâu?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Do lỗi logic trong code, sai sót trong đặc tả yêu cầu, thiết kế tồi hoặc thiếu kiểm thử.</p>
+        <p class="kw">14. Phương pháp tiếp cận có hệ thống (Systematic approach) mang lại lợi ích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Giúp kiểm soát chất lượng, tiến độ, chi phí và dễ dàng làm việc nhóm.</p>
+        <p class="kw">15. Thách thức lớn nhất hiện nay của Công nghệ phần mềm là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đối phó với sự thay đổi nhanh chóng của yêu cầu, tính không đồng nhất (heterogeneity) của nền tảng và nhu cầu phát hành phần mềm nhanh chóng.</p>
+
+        <h3>CHƯƠNG 2: QUY TRÌNH PHÁT TRIỂN PHẦN MỀM (Câu 16 - Câu 30)</h3>
+        <p class="kw">16. Quy trình phát triển phần mềm gồm 4 hoạt động cơ bản nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đặc tả, Phát triển, Thẩm định (Kiểm thử), và Cải tiến (Tiến hóa).</p>
+        <p class="kw">17. Mô hình Thác nước (Waterfall) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mô hình quy trình tuyến tính, tuần tự, trong đó mỗi pha phải hoàn thành hoàn toàn trước khi chuyển sang pha tiếp theo.</p>
+        <p class="kw">18. Ưu điểm lớn nhất của Mô hình Thác nước là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Dễ quản lý, phù hợp với các dự án có yêu cầu rõ ràng, ổn định từ ban đầu và quy mô nhỏ.</p>
+        <p class="kw">19. Mô hình Bản mẫu (Prototyping) thường được dùng khi nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Khi khách hàng chưa nắm rõ yêu cầu chi tiết của họ, cần một bản nháp để hình dung giao diện và tương tác.</p>
+        <p class="kw">20. Điểm khác biệt lớn nhất giữa mô hình Xoắn ốc (Spiral) với các mô hình khác?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tập trung mạnh vào việc Đánh giá và Quản trị rủi ro (Risk Analysis) qua từng vòng lặp.</p>
+        <p class="kw">21. Tuyên ngôn Agile (Agile Manifesto) đề cao điều gì hơn "Quy trình và công cụ"?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Cá nhân và sự tương tác (Individuals and interactions).</p>
+        <p class="kw">22. Mô hình phát triển Agile phù hợp với loại dự án nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Các dự án có yêu cầu thay đổi liên tục, cần phát hành sản phẩm nhanh (time-to-market).</p>
+        <p class="kw">23. Scrum là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là một framework phổ biến nhất của Agile, dùng để quản lý các dự án phức tạp thông qua các vòng lặp ngắn gọi là Sprint.</p>
+        <p class="kw">24. "Sprint" trong Scrum thường kéo dài bao lâu?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Thường từ 1 đến 4 tuần (phổ biến nhất là 2 tuần).</p>
+        <p class="kw">25. Nêu 3 vai trò chính trong một nhóm Scrum?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Product Owner, Scrum Master, và Development Team.</p>
+        <p class="kw">26. Product Owner trong Scrum có trách nhiệm gì lớn nhất?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Quản lý Product Backlog và tối đa hóa giá trị của sản phẩm.</p>
+        <p class="kw">27. Scrum Master có phải là người quản lý dự án (Project Manager) không? Tại sao?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Không, Scrum Master là người phục vụ (servant-leader), giúp nhóm loại bỏ rào cản và hiểu đúng quy trình Scrum, không giao việc hay quản lý con người theo cách truyền thống.</p>
+        <p class="kw">28. Product Backlog là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là danh sách ưu tiên tất cả các tính năng, yêu cầu, sửa lỗi cần làm cho sản phẩm.</p>
+        <p class="kw">29. Daily Scrum (Họp giao ban hằng ngày) nhằm mục đích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Để các thành viên đồng bộ công việc: Đã làm gì hôm qua, sẽ làm gì hôm nay, và có gặp khó khăn (blocker) nào không.</p>
+        <p class="kw">30. Quá trình RUP (Rational Unified Process) dựa trên khái niệm nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Hướng đối tượng, dựa trên Use-case, lấy kiến trúc làm trung tâm và phát triển lặp/tăng dần.</p>
+
+        <h3>CHƯƠNG 3: YÊU CẦU PHẦN MỀM (Câu 31 - Câu 45)</h3>
+        <p class="kw">31. Đặc tả yêu cầu phần mềm (SRS - Software Requirements Specification) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là tài liệu mô tả chi tiết, rõ ràng và đầy đủ các yêu cầu chức năng, phi chức năng mà hệ thống phải đáp ứng.</p>
+        <p class="kw">32. Yêu cầu chức năng (Functional Requirement) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mô tả về những hành động, tính năng mà hệ thống PHẢI LÀM (VD: Đăng nhập, Thêm sản phẩm).</p>
+        <p class="kw">33. Yêu cầu phi chức năng (Non-functional Requirement) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là các ràng buộc về mặt chất lượng, cách thức hệ thống hoạt động (VD: Thời gian phản hồi < 2s, bảo mật cao, hỗ trợ 1000 users cùng lúc).</p>
+        <p class="kw">34. Kể tên 3 phương pháp thường dùng để thu thập yêu cầu?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Phỏng vấn, Khảo sát bằng bảng hỏi, Quan sát thực tế người dùng làm việc.</p>
+        <p class="kw">35. Tại sao cần phải "Khảo sát tính khả thi" (Feasibility Study) trước khi nhận dự án?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Để đánh giá xem dự án có thể hoàn thành trong giới hạn về thời gian, chi phí và công nghệ hiện tại hay không.</p>
+        <p class="kw">36. Các bên liên quan (Stakeholders) thường gây ra khó khăn gì trong việc thu thập yêu cầu?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Yêu cầu không rõ ràng, mâu thuẫn giữa các phòng ban, thay đổi ý định liên tục, dùng ngôn ngữ chuyên ngành khó hiểu.</p>
+        <p class="kw">37. Yêu cầu nghiệp vụ (Business Requirements) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là những mục tiêu kinh doanh cấp cao mà tổ chức muốn đạt được khi xây dựng phần mềm (VD: Tăng doanh thu 20%, Giảm chi phí nhân sự).</p>
+        <p class="kw">38. Đặc tả yêu cầu tốt cần đạt được những tính chất nào? (Nêu 3 tính chất)</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Rõ ràng, đầy đủ, nhất quán (không mâu thuẫn), có thể kiểm thử được.</p>
+        <p class="kw">39. Kịch bản (Scenario) trong phân tích yêu cầu là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mô tả dạng câu chuyện thực tế về cách một người dùng tương tác với hệ thống để đạt một mục tiêu cụ thể.</p>
+        <p class="kw">40. Validation (Xác nhận yêu cầu) trả lời cho câu hỏi nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> "Chúng ta có đang xây dựng đúng hệ thống mà khách hàng cần không?"</p>
+        <p class="kw">41. Verification (Kiểm chứng yêu cầu) trả lời cho câu hỏi nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> "Tài liệu yêu cầu có được viết đúng chuẩn, nhất quán và đầy đủ không?"</p>
+        <p class="kw">42. Quản lý yêu cầu (Requirements Management) nhằm mục đích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Kiểm soát sự thay đổi của yêu cầu trong suốt vòng đời dự án, đảm bảo mọi sự thay đổi đều được phân tích tác động và theo dõi.</p>
+        <p class="kw">43. Ma trận truy vết yêu cầu (Traceability Matrix) dùng để làm gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Dùng để theo dõi mối liên hệ giữa các yêu cầu ban đầu với thiết kế, mã nguồn và các test case tương ứng.</p>
+        <p class="kw">44. "Mô hình ngôn ngữ tự nhiên" thường gặp rủi ro gì khi đặc tả yêu cầu?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Dễ gây hiểu lầm, mơ hồ, đa nghĩa.</p>
+        <p class="kw">45. Ngôn ngữ đặc tả hình thức (Formal Specification) sử dụng công cụ gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Sử dụng toán học và logic học để đặc tả, tránh hoàn toàn sự mơ hồ.</p>
+
+        <h3>CHƯƠNG 4: MÔ HÌNH HÓA PHẦN MỀM (Câu 46 - Câu 60)</h3>
+        <p class="kw">46. Mô hình hóa phần mềm mang lại lợi ích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Giúp trực quan hóa hệ thống, dễ dàng giao tiếp giữa các bên, phát hiện lỗi thiết kế sớm trước khi viết code.</p>
+        <p class="kw">47. UML (Unified Modeling Language) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là ngôn ngữ mô hình hóa thống nhất, dùng để trực quan hóa, thiết kế và xây dựng tài liệu cho các hệ thống phần mềm hướng đối tượng.</p>
+        <p class="kw">48. Sơ đồ Use-case (Usecase Diagram) thể hiện điều gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Thể hiện chức năng của hệ thống dưới góc nhìn của người dùng (Actor) và sự tương tác giữa Actor với hệ thống.</p>
+        <p class="kw">49. Trong Sơ đồ Use-case, "Actor" là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là người dùng hoặc một hệ thống khác tương tác trực tiếp với phần mềm.</p>
+        <p class="kw">50. Quan hệ "Include" trong sơ đồ Use-case có nghĩa là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Use-case gốc bắt buộc phải gọi đến Use-case include để hoàn thành chức năng (Bắt buộc).</p>
+        <p class="kw">51. Quan hệ "Extend" trong sơ đồ Use-case có nghĩa là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Use-case gốc có thể (hoặc không) mở rộng chức năng bằng Use-case extend tùy vào điều kiện (Tùy chọn).</p>
+        <p class="kw">52. Biểu đồ lớp (Class Diagram) thể hiện khía cạnh nào của hệ thống?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Khía cạnh tĩnh; thể hiện các lớp, thuộc tính, phương thức và mối quan hệ giữa các lớp.</p>
+        <p class="kw">53. Kể tên 3 loại mối quan hệ cơ bản trong Biểu đồ lớp?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Kế thừa (Inheritance), Kết tập/Tập hợp (Aggregation/Composition), Kết hợp (Association).</p>
+        <p class="kw">54. Sơ đồ tuần tự (Sequence Diagram) được dùng để làm gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Mô tả sự tương tác giữa các đối tượng theo trình tự thời gian (việc gửi và nhận thông điệp).</p>
+        <p class="kw">55. Sơ đồ hoạt động (Activity Diagram) có hình thức giống với công cụ nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Giống với Lưu đồ thuật toán (Flowchart), dùng để mô tả luồng xử lý nghiệp vụ hoặc luồng đi của thuật toán.</p>
+        <p class="kw">56. Sơ đồ trạng thái (State Machine Diagram) thể hiện điều gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Vòng đời (các trạng thái) của một đối tượng duy nhất từ khi sinh ra đến khi hủy bỏ, dựa trên các sự kiện tác động.</p>
+        <p class="kw">57. UML được chia làm 2 nhóm biểu đồ chính là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Nhóm biểu đồ cấu trúc (Structural Diagrams) và Nhóm biểu đồ hành vi (Behavioral Diagrams).</p>
+        <p class="kw">58. Mô hình hóa dữ liệu (Data Modeling) thường dùng biểu đồ gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Biểu đồ thực thể - mối kết hợp (ERD - Entity Relationship Diagram).</p>
+        <p class="kw">59. Trong thiết kế CSDL, "Khóa chính" (Primary Key) dùng để làm gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Để xác định tính duy nhất của một bản ghi trong một bảng.</p>
+        <p class="kw">60. Trong thiết kế CSDL, "Khóa ngoại" (Foreign Key) dùng để làm gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Để tạo mối quan hệ liên kết giữa các bảng.</p>
+
+        <h3>CHƯƠNG 5: THIẾT KẾ PHẦN MỀM (Câu 61 - Câu 80)</h3>
+        <p class="kw">61. Thiết kế kiến trúc phần mềm là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là quá trình xác định các thành phần (component) chính của hệ thống và sự giao tiếp/tương tác giữa chúng.</p>
+        <p class="kw">62. Kể tên 2 mẫu kiến trúc phần mềm (Architecture Patterns) phổ biến?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> MVC (Model-View-Controller) và Client-Server.</p>
+        <p class="kw">63. Trong mô hình MVC, "Model" đảm nhận vai trò gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Quản lý dữ liệu và logic nghiệp vụ.</p>
+        <p class="kw">64. Trong mô hình MVC, "View" đảm nhận vai trò gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Quản lý giao diện hiển thị cho người dùng.</p>
+        <p class="kw">65. Trong mô hình MVC, "Controller" đảm nhận vai trò gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tiếp nhận yêu cầu từ người dùng, điều hướng logic giữa View và Model.</p>
+        <p class="kw">66. Kiến trúc Client-Server phân chia công việc như thế nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Server lưu trữ dữ liệu và xử lý nghiệp vụ nặng; Client gửi yêu cầu và hiển thị kết quả cho người dùng.</p>
+        <p class="kw">67. Nguyên lý "Cohesion" (Độ gắn kết) trong module là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mức độ liên quan và tập trung thực hiện duy nhất một nhiệm vụ của các thành phần bên trong một module.</p>
+        <p class="kw">68. Nguyên lý "Coupling" (Độ phụ thuộc) trong module là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mức độ phụ thuộc, ràng buộc lẫn nhau giữa các module khác nhau trong hệ thống.</p>
+        <p class="kw">69. Tiêu chuẩn thiết kế phần mềm tốt liên quan đến Cohesion và Coupling là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Cohesion cao (High Cohesion) và Coupling thấp (Low Coupling).</p>
+        <p class="kw">70. Thiết kế giao diện người dùng (UI) cần tuân thủ nguyên tắc "Nhất quán" (Consistency) nghĩa là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Các thành phần thiết kế (màu sắc, font chữ, vị trí nút bấm) phải đồng bộ xuyên suốt toàn bộ ứng dụng.</p>
+        <p class="kw">71. Nguyên tắc "Phản hồi" (Feedback) trong thiết kế UI là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Hệ thống phải luôn thông báo cho người dùng biết trạng thái hiện tại (VD: Đang tải, Lưu thành công, Lỗi mạng).</p>
+        <p class="kw">72. Mục đích chính của việc thiết kế cơ sở dữ liệu là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tổ chức dữ liệu hiệu quả, tránh dư thừa (chuẩn hóa), đảm bảo tính toàn vẹn và tối ưu truy xuất.</p>
+        <p class="kw">73. Giai đoạn thiết kế hệ thống đứng sau giai đoạn nào trong quy trình thác nước?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đứng sau giai đoạn Phân tích và Đặc tả yêu cầu.</p>
+        <p class="kw">74. Thiết kế phần mềm chia làm mấy mức độ chính?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Mức kiến trúc (Architecture Design) và Mức chi tiết (Detailed Design).</p>
+        <p class="kw">75. "Design Pattern" (Mẫu thiết kế) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là các giải pháp tổng quát, có thể tái sử dụng cho các vấn đề thường gặp trong thiết kế phần mềm.</p>
+        <p class="kw">76. Mẫu Singleton (Design Pattern) có mục đích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đảm bảo một lớp (class) chỉ có duy nhất một thể hiện (instance) và cung cấp một điểm truy cập toàn cục tới nó.</p>
+        <p class="kw">77. Thiết kế CSDL mức Logic khác mức Vật lý ở điểm nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Mức logic độc lập với hệ quản trị CSDL cụ thể (chỉ có bảng, cột, khóa); Mức vật lý gắn liền với 1 DBMS cụ thể (kiểu dữ liệu thực tế, index, partition...).</p>
+        <p class="kw">78. Nguyên tắc "Thân thiện với người dùng" trong UI đòi hỏi điều gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Người dùng có thể dễ dàng sử dụng mà không cần đào tạo quá phức tạp, ngôn ngữ hiển thị dễ hiểu.</p>
+        <p class="kw">79. Nguyên tắc "Cho phép phục hồi lỗi" (Forgiveness) trong UI là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Cung cấp cơ hội cho người dùng hoàn tác (Undo) hành động sai lầm của họ (VD: Xóa nhầm file có thể khôi phục từ thùng rác).</p>
+        <p class="kw">80. UX (User Experience) khác UI (User Interface) như thế nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> UI là giao diện nhìn thấy (màu, nút); UX là trải nghiệm, cảm xúc của người dùng khi sử dụng sản phẩm đó (mượt mà, dễ dùng).</p>
+
+        <h3>CHƯƠNG 6: LẬP TRÌNH (Câu 81 - Câu 90)</h3>
+        <p class="kw">81. Trình bày 4 tính chất cơ bản của Lập trình hướng đối tượng (OOP)?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đóng gói (Encapsulation), Kế thừa (Inheritance), Đa hình (Polymorphism), Trừu tượng (Abstraction).</p>
+        <p class="kw">82. Tính Đóng gói trong OOP mang lại lợi ích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Bảo vệ dữ liệu bên trong đối tượng khỏi sự can thiệp ngoài ý muốn, chỉ cho phép thao tác thông qua các phương thức công khai (getter/setter).</p>
+        <p class="kw">83. Tính Đa hình trong OOP là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Cùng một phương thức nhưng có thể thực hiện những hành vi khác nhau tùy thuộc vào đối tượng gọi nó (Overriding/Overloading).</p>
+        <p class="kw">84. Mã nguồn sạch (Clean code) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là mã nguồn dễ đọc, dễ hiểu, dễ bảo trì, được tổ chức logic và tuân thủ các chuẩn lập trình.</p>
+        <p class="kw">85. Tái cấu trúc mã nguồn (Refactoring) nghĩa là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là quá trình dọn dẹp, tối ưu hóa cấu trúc code bên trong mà không làm thay đổi hành vi bên ngoài của phần mềm.</p>
+        <p class="kw">86. Coding Convention (Chuẩn lập trình) dùng để làm gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Đảm bảo mọi thành viên trong team viết code theo một phong cách thống nhất, giúp dễ đọc chéo và dễ bảo trì.</p>
+        <p class="kw">87. Nguyên lý SOLID trong lập trình OOP là viết tắt của 5 nguyên tắc nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Single Responsibility (Đơn trách nhiệm), Open-Closed (Đóng-Mở), Liskov Substitution (Thay thế Liskov), Interface Segregation (Phân tách Interface), Dependency Inversion (Đảo ngược phụ thuộc).</p>
+        <p class="kw">88. Phiên bản mã nguồn (Version Control System) phổ biến nhất hiện nay là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Git (với các nền tảng như GitHub, GitLab).</p>
+        <p class="kw">89. Commit trong Git nghĩa là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Là hành động ghi lại một điểm thay đổi (phiên bản) của mã nguồn vào kho lưu trữ (repository).</p>
+        <p class="kw">90. CI/CD (Continuous Integration / Continuous Deployment) nhằm mục đích gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tự động hóa quá trình tích hợp code, kiểm thử và triển khai phần mềm liên tục, giảm rủi ro phát hành.</p>
+
+        <h3>CHƯƠNG 7: KIỂM THỬ VÀ BẢO TRÌ PHẦN MỀM (Câu 91 - Câu 100)</h3>
+        <p class="kw">91. Mục đích chính của Kiểm thử phần mềm (Software Testing) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Tìm ra lỗi (bug), chứng minh phần mềm đáp ứng đúng yêu cầu và đánh giá chất lượng sản phẩm.</p>
+        <p class="kw">92. Ai là người chịu trách nhiệm chính trong việc kiểm thử đơn vị (Unit Test)?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Lập trình viên (Developer).</p>
+        <p class="kw">93. Sự khác biệt cốt lõi giữa Verification (Xác minh) và Validation (Thẩm định) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Verification kiểm tra xem phần mềm có được làm ĐÚNG QUY TRÌNH không; Validation kiểm tra xem phần mềm có ĐÚNG NHU CẦU khách hàng không.</p>
+        <p class="kw">94. Kiểm thử hộp đen (Black-box testing) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Phương pháp kiểm thử chỉ dựa vào đầu vào (input) và đầu ra (output) để đánh giá chức năng, không quan tâm đến mã nguồn bên trong.</p>
+        <p class="kw">95. Kiểm thử hộp trắng (White-box testing) là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Phương pháp kiểm thử dựa trên sự am hiểu về cấu trúc bên trong, thuật toán và mã nguồn của phần mềm.</p>
+        <p class="kw">96. Kể tên 4 cấp độ kiểm thử phần mềm theo thứ tự từ thấp đến cao?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Unit Test (Đơn vị) -> Integration Test (Tích hợp) -> System Test (Hệ thống) -> Acceptance Test (Chấp nhận).</p>
+        <p class="kw">97. Kiểm thử hồi quy (Regression Testing) được thực hiện khi nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Sau khi sửa code hoặc thêm tính năng mới, nhằm đảm bảo hệ thống cũ không bị phát sinh lỗi mới.</p>
+        <p class="kw">98. Một Test case (Ca kiểm thử) tiêu chuẩn cần có những thành phần chính nào?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> ID, Tên testcase, Điều kiện tiên quyết (Pre-condition), Các bước thực hiện (Steps), Kết quả mong đợi (Expected Result), Kết quả thực tế (Actual Result).</p>
+        <p class="kw">99. Bảo trì phần mềm là gì?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Quá trình sửa đổi, nâng cấp phần mềm sau khi đã bàn giao cho khách hàng nhằm sửa lỗi, cải thiện hiệu năng hoặc thích nghi môi trường mới.</p>
+        <p class="kw">100. Nêu 4 loại bảo trì phần mềm cơ bản?</p>
+        <p style="margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;"><strong>Đáp án:</strong> Bảo trì sửa lỗi (Corrective), Bảo trì thích nghi (Adaptive), Bảo trì hoàn thiện (Perfective), Bảo trì phòng ngừa (Preventive).</p>
+
+        
+        <div class="box" style="background-color: white; border: 2px solid var(--secondary); margin-top: 40px; page-break-before: always;">
+            <h1>BỘ ĐỀ THI ÔN TẬP TOÀN DIỆN MÔN KỸ NGHỆ PHẦN MỀM</h1>
+<p><em>(Tài liệu này bao gồm 4 bộ đề tự sinh, được thiết kế bám sát cấu trúc đề thi thực tế và bao phủ toàn bộ kiến thức từ Chương 1 đến Chương 7 của học phần Kỹ nghệ phần mềm)</em></p>
+<hr />
+<h2>BỘ ĐỀ SỐ 1 (Trọng tâm: Chương 1, 2, 3 - Tổng quan, Quy trình, Yêu cầu)</h2>
+<h3>ĐỀ THI</h3>
+<p><strong>Câu I (5 điểm) - Trả lời ngắn gọn, súc tích các câu hỏi sau. Mỗi câu đúng được 0.5 điểm</strong><br />
+1. Phần mềm được định nghĩa như thế nào dưới góc nhìn kỹ nghệ?</p>
+<ul>
+<li>Là tập hợp các chương trình máy tính, cấu trúc dữ liệu và tài liệu liên quan</li>
+<li>Được thiết kế để thực hiện một chức năng hoặc giải quyết một vấn đề cụ thể</li>
+<li>Có thể chạy trên phần cứng máy tính hoặc thiết bị điện tử khác, nhưng không có hình dạng vật lý như phần cứng</li>
+<li>Có thể được sao chép, sửa đổi, phân phối mà không bị hao mòn vật lý</li>
+<li>Có thể bị "thoái hóa" do thay đổi môi trường hoặc yêu cầu người dùng</li>
+<li>Thường được phát triển thông qua các quy trình kỹ nghệ phần mềm có cấu trúc để đảm bảo chất lượng, hiệu quả và đáp ứng nhu cầu của khách hàng</li>
+<li>
+<p>Có thể bao gồm nhiều loại phần mềm khác nhau như ứng dụng, hệ điều hành, phần mềm nhúng, phần mềm dịch vụ, v.v.</p>
+</li>
+<li>
+<p>Nêu thuộc tính quan trọng của một phần mềm tốt?</p>
+</li>
+<li>
+<p>Góc nhìn kỹ nghệ phần mềm đánh giá một phần mềm tốt dựa trên các thuộc tính sau:</p>
+</li>
+<li>Tính đúng đắn (Correctness): Phần mềm phải thực hiện đúng các chức năng theo yêu cầu đã định nghĩa.</li>
+<li>Tính tin cậy (Reliability): Phần mềm phải hoạt động ổn định và không gặp lỗi trong quá trình sử dụng.</li>
+<li>Tính bảo trì được (Maintainability): Phần mềm phải dễ dàng sửa chữa, nâng cấp và mở rộng trong tương lai.</li>
+<li>
+<p>Tính hiệu quả (Efficiency): Phần mềm phải sử dụng tài nguyên (CPU, bộ nhớ, băng thông) một cách tối ưu để đạt được hiệu suất tốt.</p>
+</li>
+<li>
+<p>Góc nhìn người dùng đánh giá phần mềm tốt dựa trên các thuộc tính sau:</p>
+</li>
+<li>Giao diện thân thiện (User-friendly): Phần mềm phải dễ sử dụng, dễ học và mang lại trải nghiệm tốt cho người dùng.</li>
+<li>Tính năng đầy đủ (Feature-rich): Phần mềm phải cung cấp đầy đủ các chức năng cần thiết để đáp ứng nhu cầu của người dùng.</li>
+<li>Hiệu suất tốt (Performance): Phần mềm phải phản hồi nhanh và hoạt động mượt mà.</li>
+<li>Độ tin cậy cao (Reliability): Phần mềm phải ít lỗi và không gây ra sự cố cho người dùng.</li>
+<li>
+<p>Hỗ trợ và bảo trì tốt (Support and Maintenance): Phần mềm phải có dịch vụ hỗ trợ khách hàng tốt và được cập nhật thường xuyên để sửa lỗi và cải thiện tính năng.</p>
+</li>
+<li>
+<p>Khủng hoảng phần mềm là hiện tượng gì?</p>
+</li>
+<li>
+<p>Khủng hoảng phần mềm là hiện tượng khi các dự án phần mềm gặp phải những vấn đề nghiêm trọng như vượt quá ngân sách, chậm tiến độ, chất lượng kém và không đáp ứng yêu cầu của khách hàng. Điều này thường xảy ra do thiếu kế hoạch, quản lý yếu kém, yêu cầu thay đổi liên tục hoặc công nghệ mới chưa được hiểu rõ.</p>
+</li>
+<li>Khủng hoảng phần mềm đã dẫn đến sự mất niềm tin vào ngành công nghiệp phần mềm và thúc đẩy sự phát triển của các quy trình kỹ nghệ phần mềm có cấu trúc hơn để cải thiện chất lượng và hiệu quả của các dự án phần mềm.</li>
+<li>Khủng hoảng phần mềm cũng đã làm nổi bật tầm quan trọng của việc quản lý dự án, phân tích yêu cầu, thiết kế phần mềm và kiểm thử để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng nhu cầu của người dùng.</li>
+<li>Khủng hoảng phần mềm đã thúc đẩy sự phát triển của các phương pháp luận như Agile, Scrum và DevOps để giúp các đội phát triển phần mềm làm việc hiệu quả hơn và thích nghi nhanh chóng với thay đổi.</li>
+<li>Khủng hoảng phần mềm cũng đã làm tăng nhận thức về tầm quan trọng của việc đào tạo và phát triển kỹ năng cho các kỹ sư phần mềm để đảm bảo rằng họ có khả năng đối phó với những thách thức trong quá trình phát triển phần mềm.</li>
+<li>Khủng hoảng phần mềm đã thúc đẩy sự phát triển của các công cụ và kỹ thuật mới để quản lý dự án, phân tích yêu cầu, thiết kế phần mềm và kiểm thử nhằm cải thiện chất lượng và hiệu quả của các dự án phần mềm.</li>
+<li>Khủng hoảng phần mềm đã làm nổi bật tầm quan trọng của việc giao tiếp hiệu quả giữa các bên liên quan trong quá trình phát triển phần mềm để đảm bảo rằng tất cả mọi người đều hiểu rõ về yêu cầu, tiến độ và chất lượng của dự án.</li>
+<li>Khủng hoảng phần mềm đã thúc đẩy sự phát triển của các tiêu chuẩn và quy trình kỹ nghệ phần mềm để đảm bảo rằng các dự án phần mềm được thực hiện theo cách có cấu trúc và có thể kiểm soát được.</li>
+<li>
+<p>Khủng hoảng phần mềm đã làm nổi bật tầm quan trọng của việc kiểm thử phần mềm và đảm bảo chất lượng trong quá trình phát triển phần mềm.</p>
+</li>
+<li>
+<p>Quy trình phát triển phần mềm bao gồm 4 hoạt động cốt lõi nào?</p>
+</li>
+<li>
+<p>Đặc tả phần mềm (Software Specification): Xác định và mô tả chi tiết các yêu cầu chức năng và phi chức năng của phần mềm.</p>
+</li>
+<li>Phát triển phần mềm (Software Development): Thiết kế, mã hóa và xây dựng phần mềm dựa trên các yêu cầu đã được đặc tả.</li>
+<li>Thẩm định phần mềm (Software Validation): Kiểm tra và đánh giá phần mềm để đảm bảo rằng nó đáp ứng các yêu cầu đã được đặc tả và hoạt động đúng như mong đợi.</li>
+<li>
+<p>Tiến hóa phần mềm (Software Evolution): Bảo trì, nâng cấp và mở rộng phần mềm sau khi đã được phát hành để đáp ứng các yêu cầu mới hoặc thay đổi trong môi trường hoạt động.</p>
+</li>
+<li>
+<p>Điểm khác biệt lớn nhất giữa mô hình Thác nước (Waterfall) và mô hình Agile là gì?</p>
+</li>
+<li>
+<p>Mô hình Thác nước (Waterfall) là một quy trình phát triển phần mềm tuyến tính, trong đó các giai đoạn được thực hiện theo thứ tự cố định: Phân tích yêu cầu -&gt; Thiết kế -&gt; Mã hóa -&gt; Kiểm thử -&gt; Bảo trì. Mỗi giai đoạn phải hoàn thành trước khi chuyển sang giai đoạn tiếp theo, và không có sự quay lại giữa các giai đoạn.</p>
+</li>
+<li>Mô hình Agile là một quy trình phát triển phần mềm linh hoạt, trong đó các giai đoạn được thực hiện theo các vòng lặp ngắn (sprint), cho phép thay đổi yêu cầu và phản hồi nhanh chóng từ khách hàng. Agile tập trung vào việc phát triển phần mềm theo từng phần nhỏ, liên tục cải tiến và thích nghi với thay đổi trong quá trình phát triển.</li>
+<li>
+<p>Điểm khác biệt lớn nhất giữa hai mô hình này là Thác nước không cho phép thay đổi yêu cầu sau khi đã hoàn thành giai đoạn phân tích, trong khi Agile cho phép thay đổi yêu cầu liên tục trong suốt quá trình phát triển để đáp ứng nhu cầu của khách hàng một cách linh hoạt hơn.</p>
+</li>
+<li>
+<p>Đặc tả yêu cầu phần mềm (SRS) là gì?</p>
+</li>
+<li>
+<p>Đặc tả yêu cầu phần mềm (Software Requirements Specification - SRS) là một tài liệu chi tiết mô tả các yêu cầu chức năng và phi chức năng mà hệ thống phần mềm phải đáp ứng. SRS cung cấp một cái nhìn tổng quan về những gì phần mềm sẽ làm, cách nó sẽ hoạt động và các ràng buộc liên quan đến việc phát triển phần mềm.</p>
+</li>
+<li>
+<p>SRS thường bao gồm các phần như: Giới thiệu, Mô tả tổng quan, Yêu cầu chức năng, Yêu cầu phi chức năng, Ràng buộc, Các giả định và phụ thuộc, v.v. SRS là một tài liệu quan trọng trong quá trình phát triển phần mềm vì nó giúp đảm bảo rằng tất cả các bên liên quan đều hiểu rõ về yêu cầu của hệ thống và có thể sử dụng nó làm cơ sở để thiết kế, phát triển và kiểm thử phần mềm.</p>
+</li>
+<li>
+<p>Yêu cầu chức năng (Functional Requirement) khác biệt thế nào với yêu cầu phi chức năng (Non-functional Requirement)?</p>
+</li>
+<li>
+<p>Yêu cầu chức năng (Functional Requirement) mô tả những gì hệ thống phải làm, tức là các hành động, chức năng hoặc dịch vụ mà phần mềm phải cung cấp. Ví dụ: "Hệ thống phải cho phép người dùng đăng nhập bằng tên người dùng và mật khẩu."</p>
+</li>
+<li>Yêu cầu phi chức năng (Non-functional Requirement) mô tả cách thức hoạt động của hệ thống, tức là các thuộc tính chất lượng như hiệu năng, bảo mật, khả năng mở rộng, độ tin cậy, v.v. Ví dụ: "Hệ thống phải phản hồi trong vòng 2 giây khi người dùng đăng nhập."</li>
+<li>
+<p>Sự khác biệt chính giữa hai loại yêu cầu này là yêu cầu chức năng tập trung vào hành động và chức năng của hệ thống, trong khi yêu cầu phi chức năng tập trung vào cách thức hoạt động và các thuộc tính chất lượng của hệ thống.</p>
+</li>
+<li>
+<p>Kể tên 3 phương pháp thường dùng để thu thập yêu cầu từ khách hàng?</p>
+</li>
+<li>
+<p>Phỏng vấn (Interviews): Trực tiếp trò chuyện với khách hàng hoặc người dùng cuối để thu thập thông tin về yêu cầu của họ.</p>
+</li>
+<li>Khảo sát bằng bảng hỏi (Questionnaires): Sử dụng các câu hỏi có cấu trúc để thu thập dữ liệu từ một nhóm lớn khách hàng hoặc người dùng.</li>
+<li>Quan sát thực tế (Observation): Theo dõi cách người dùng tương tác với hệ thống hiện tại hoặc trong môi trường làm việc để hiểu rõ hơn về yêu cầu của họ.</li>
+<li>Phân tích tài liệu (Document Analysis): Xem xét các tài liệu hiện có như báo cáo, quy trình làm việc, hoặc phần mềm cũ để rút ra yêu cầu.</li>
+<li>
+<p>Workshop: Tổ chức các buổi làm việc nhóm với khách hàng và các bên liên quan để thảo luận và xác định yêu cầu.</p>
+</li>
+<li>
+<p>"Stakeholder" (Người có liên quan) trong một dự án phần mềm gồm những đối tượng nào?</p>
+</li>
+<li>
+<p>Khách hàng (Customer): Người hoặc tổ chức đặt hàng và trả tiền cho phần mềm.</p>
+</li>
+<li>Người dùng cuối (End-users): Những người sẽ trực tiếp sử dụng phần mềm trong công việc hoặc cuộc sống hàng ngày.</li>
+<li>Nhà quản lý (Managers): Những người giám sát dự án và đảm bảo rằng nó được hoàn thành đúng hạn và trong ngân sách.</li>
+<li>
+<p>Đội ngũ phát triển (Development team): Bao gồm các lập trình viên, kiểm thử viên, nhà phân tích yêu cầu, thiết kế viên, v.v. những người trực tiếp xây dựng phần mềm.</p>
+</li>
+<li>
+<p>Sơ đồ Usecase được sử dụng trong giai đoạn nào của quy trình phát triển phần mềm?</p>
+</li>
+<li>
+<p>Sơ đồ Usecase thường được sử dụng trong giai đoạn Phân tích và Đặc tả yêu cầu để mô tả các chức năng của hệ thống từ góc nhìn của người dùng và các tương tác giữa người dùng và hệ thống. Sơ đồ Usecase giúp xác định các yêu cầu chức năng và tạo ra một cái nhìn tổng quan về cách người dùng sẽ tương tác với phần mềm.</p>
+</li>
+<li>Sơ đồ Usecase cũng có thể được sử dụng trong giai đoạn Thiết kế để giúp xác định các lớp và đối tượng cần thiết để thực hiện các chức năng đã được mô tả trong sơ đồ Usecase.</li>
+<li>Sơ đồ Usecase có thể được sử dụng trong giai đoạn Kiểm thử để xác định các trường hợp kiểm thử dựa trên các chức năng đã được mô tả trong sơ đồ Usecase.</li>
+<li>Sơ đồ Usecase có thể được sử dụng trong giai đoạn Bảo trì để hiểu rõ hơn về các chức năng của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>Sơ đồ Usecase có thể được sử dụng trong giai đoạn Phân phối để giúp người dùng hiểu rõ hơn về cách sử dụng phần mềm và các chức năng mà nó cung cấp.</li>
+</ul>
+<p><strong>Câu II (5 điểm)</strong><br />
+Giám đốc Thư viện trường Đại học muốn xây dựng phần mềm "Quản lý mượn trả sách" cho phép:</p>
+<ul>
+<li>Thủ thư thực hiện các chức năng:</li>
+<li>Quản lý thông tin sách (Thêm, sửa, xóa sách)</li>
+<li>Lập phiếu mượn sách</li>
+<li>Nhận trả sách và tính phí phạt (nếu có)</li>
+<li>Lập báo cáo số lượng sách đang cho mượn</li>
+<li>Độc giả (Sinh viên/Giảng viên) thực hiện chức năng:</li>
+<li>Tra cứu thông tin sách</li>
+<li>Xem lịch sử mượn sách của bản thân</li>
+</ul>
+<p><strong>THÔNG TIN SÁCH (Form nhập liệu)</strong><br />
+- Mã sách: [điền]<br />
+- Tên sách: [điền]<br />
+- Tác giả: [điền]<br />
+- Thể loại: [điền]<br />
+- Năm xuất bản: [điền]<br />
+- Số lượng: [điền]<br />
+<em>Ghi chú:</em><br />
+- Mã sách phải duy nhất. Thể loại được chọn từ danh mục có sẵn.<br />
+- Số lượng phải là số nguyên lớn hơn 0.<br />
+- Các thuộc tính không được bỏ trống.</p>
+<ol>
+<li><em>(1.5đ)</em> Hãy vẽ Sơ đồ Usecase cho phần mềm "Quản lý mượn trả sách".</li>
+<li><em>(1.0đ)</em> Hãy vẽ Sơ đồ màn hình giao diện cho phần mềm này.</li>
+<li><em>(2.5đ)</em> Hãy thực hiện cho chức năng "Quản lý thông tin sách (Thêm, sửa, xóa sách)" theo các bước sau:<br />
+   a. (1.0đ) Vẽ sơ đồ lớp hướng đối tượng cho chức năng này.<br />
+   b. (0.5đ) Thiết kế dữ liệu lưu trữ cho chức năng này (cấu trúc bảng dữ liệu).<br />
+   c. (0.5đ) Thiết kế Màn hình giao diện thực hiện chức năng này.<br />
+   d. (0.5đ) Thiết kế TestCase cho trường hợp "Thêm sách mới thành công".</li>
+</ol>
+<h3>ĐÁP ÁN ĐỀ 1</h3>
+<p><strong>Câu 1 (5 điểm)</strong><br />
+1. Là tập hợp các chương trình máy tính, cấu trúc dữ liệu và tài liệu liên quan.</p>
+<ul>
+<li>Được thiết kế để thực hiện một chức năng hoặc giải quyết một vấn đề cụ thể.</li>
+<li>Có thể chạy trên phần cứng máy tính hoặc thiết bị điện tử khác, nhưng không có hình dạng vật lý như phần cứng.</li>
+<li>Có thể được sao chép, sửa đổi, phân phối mà không bị hao mòn vật lý.</li>
+<li>Có thể bị "thoái hóa" do thay đổi môi trường hoặc yêu cầu người dùng.</li>
+<li>Thường được phát triển thông qua các quy trình kỹ nghệ phần mềm có cấu trúc để đảm bảo chất lượng, hiệu quả và đáp ứng nhu cầu của khách hàng.</li>
+<li>
+<p>Có thể bao gồm nhiều loại phần mềm khác nhau như ứng dụng, hệ điều hành, phần mềm nhúng, phần mềm dịch vụ, v.v.</p>
+</li>
+<li>
+<p>Tính đúng đắn, tính tin cậy, tính bảo trì được, tính hiệu quả.</p>
+</li>
+<li>
+<p>Giao diện thân thiện, tính năng đầy đủ, hiệu suất tốt, độ tin cậy cao, hỗ trợ và bảo trì tốt.</p>
+</li>
+<li>Tính đúng đắn đảm bảo phần mềm thực hiện đúng chức năng theo yêu cầu. Tính tin cậy đảm bảo phần mềm hoạt động ổn định. Tính bảo trì được giúp dễ dàng sửa chữa và nâng cấp. Tính hiệu quả tối ưu hóa tài nguyên sử dụng. Giao diện thân thiện giúp người dùng dễ sử dụng. Tính năng đầy đủ đáp ứng nhu cầu người dùng. Hiệu suất tốt mang lại trải nghiệm mượt mà. Độ tin cậy cao giảm lỗi và sự cố. Hỗ trợ và bảo trì tốt đảm bảo phần mềm luôn cập nhật và sửa lỗi kịp thời.</li>
+<li>Một phần mềm tốt cần có sự cân bằng giữa các thuộc tính này để đáp ứng cả góc nhìn kỹ nghệ và người dùng.</li>
+<li>Cần có sự tham gia của các bên liên quan trong suốt quá trình phát triển phần mềm.</li>
+<li>Việc đánh giá phần mềm tốt cũng cần dựa trên ngữ cảnh sử dụng và mục tiêu của phần mềm đó.</li>
+<li>
+<p>Việc cải thiện các thuộc tính này thường là một quá trình liên tục trong suốt vòng đời của phần mềm.</p>
+</li>
+<li>
+<p>Các dự án phần mềm vượt quá ngân sách, chậm tiến độ, chất lượng kém và không đáp ứng yêu cầu.</p>
+</li>
+<li>
+<p>Do thiếu kế hoạch, quản lý yếu kém, yêu cầu thay đổi liên tục hoặc công nghệ mới chưa được hiểu rõ.</p>
+</li>
+<li>Dẫn đến sự mất niềm tin vào ngành công nghiệp phần mềm và thúc đẩy sự phát triển của các quy trình kỹ nghệ phần mềm có cấu trúc hơn.</li>
+<li>Làm nổi bật tầm quan trọng của việc quản lý dự án, phân tích yêu cầu, thiết kế phần mềm và kiểm thử để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng nhu cầu của người dùng.</li>
+<li>Thúc đẩy sự phát triển của các phương pháp luận như Agile, Scrum và DevOps để giúp các đội phát triển phần mềm làm việc hiệu quả hơn và thích nghi nhanh chóng với thay đổi.</li>
+<li>Làm tăng nhận thức về tầm quan trọng của việc đào tạo và phát triển kỹ năng cho các kỹ sư phần mềm để đảm bảo rằng họ có khả năng đối phó với những thách thức trong quá trình phát triển phần mềm.</li>
+<li>Thúc đẩy sự phát triển của các công cụ và kỹ thuật mới để quản lý dự án, phân tích yêu cầu, thiết kế phần mềm và kiểm thử nhằm cải thiện chất lượng và hiệu quả của các dự án phần mềm.</li>
+<li>Làm nổi bật tầm quan trọng của việc giao tiếp hiệu quả giữa các bên liên quan trong quá trình phát triển phần mềm để đảm bảo rằng tất cả mọi người đều hiểu rõ về yêu cầu, tiến độ và chất lượng của dự án.</li>
+<li>Thúc đẩy sự phát triển của các tiêu chuẩn và quy trình kỹ nghệ phần mềm để đảm bảo rằng các dự án phần mềm được thực hiện theo cách có cấu trúc và có thể kiểm soát được.</li>
+<li>Làm nổi bật tầm quan trọng của việc kiểm thử phần mềm và đảm bảo chất lượng trong quá trình phát triển phần mềm.</li>
+<li>Khủng hoảng phần mềm đã thúc đẩy sự phát triển của ngành công nghiệp phần mềm và giúp cải thiện chất lượng và hiệu quả của các dự án phần mềm trong tương lai.</li>
+<li>Khủng hoảng phần mềm cũng đã làm tăng nhận thức về tầm quan trọng của việc quản lý rủi ro trong các dự án phần mềm để giảm thiểu khả năng xảy ra các vấn đề nghiêm trọng.</li>
+<li>
+<p>Khủng hoảng phần mềm đã thúc đẩy sự phát triển của các phương pháp quản lý dự án như PRINCE2, PMBOK và Agile để giúp các đội phát triển phần mềm quản lý dự án hiệu quả hơn.</p>
+</li>
+<li>
+<p>Đặc tả phần mềm, Phát triển phần mềm, Thẩm định phần mềm, Tiến hóa phần mềm.</p>
+</li>
+<li>
+<p>Đặc tả phần mềm: Xác định và mô tả chi tiết các yêu cầu chức năng và phi chức năng của phần mềm.</p>
+</li>
+<li>Phát triển phần mềm: Thiết kế, mã hóa và xây dựng phần mềm dựa trên các yêu cầu đã được đặc tả.</li>
+<li>Thẩm định phần mềm: Kiểm tra và đánh giá phần mềm để đảm bảo rằng nó đáp ứng các yêu cầu đã được đặc tả và hoạt động đúng như mong đợi.</li>
+<li>Tiến hóa phần mềm: Bảo trì, nâng cấp và mở rộng phần mềm sau khi đã được phát hành để đáp ứng các yêu cầu mới hoặc thay đổi trong môi trường hoạt động.</li>
+<li>Mỗi hoạt động cốt lõi này đóng một vai trò quan trọng trong quá trình phát triển phần mềm và đảm bảo rằng phần mềm được xây dựng đúng cách, đáp ứng yêu cầu của khách hàng và có thể duy trì và nâng cấp trong tương lai.</li>
+<li>Việc thực hiện tốt các hoạt động này đòi hỏi sự phối hợp chặt chẽ giữa các bên liên quan và sự tuân thủ các quy trình kỹ nghệ phần mềm đã được thiết lập.</li>
+<li>Việc quản lý rủi ro và thay đổi trong suốt quá trình phát triển phần mềm cũng là một phần quan trọng để đảm bảo thành công của dự án phần mềm.</li>
+<li>Việc sử dụng các công cụ và kỹ thuật phù hợp trong mỗi hoạt động cốt lõi cũng giúp cải thiện hiệu quả và chất lượng của phần mềm được phát triển.</li>
+<li>Việc đánh giá và cải tiến liên tục trong suốt quá trình phát triển phần mềm cũng giúp đảm bảo rằng phần mềm luôn đáp ứng được nhu cầu của khách hàng và có thể thích nghi với những thay đổi trong môi trường hoạt động.</li>
+<li>
+<p>Việc áp dụng các phương pháp luận như Agile trong quá trình phát triển phần mềm cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi, đồng thời cải thiện sự hợp tác giữa các bên liên quan.</p>
+</li>
+<li>
+<p>Thác nước đi theo tuần tự tuyến tính không lặp lại; Agile làm theo các vòng lặp ngắn, linh hoạt thay đổi.</p>
+</li>
+<li>
+<p>Mô hình Thác nước (Waterfall) là một quy trình phát triển phần mềm tuyến tính, trong đó các giai đoạn được thực hiện theo thứ tự cố định: Phân tích yêu cầu -&gt; Thiết kế -&gt; Mã hóa -&gt; Kiểm thử -&gt; Bảo trì. Mỗi giai đoạn phải hoàn thành trước khi chuyển sang giai đoạn tiếp theo, và không có sự quay lại giữa các giai đoạn.</p>
+</li>
+<li>Mô hình Agile là một quy trình phát triển phần mềm linh hoạt, trong đó các giai đoạn được thực hiện theo các vòng lặp ngắn (sprint), cho phép thay đổi yêu cầu và phản hồi nhanh chóng từ khách hàng. Agile tập trung vào việc phát triển phần mềm theo từng phần nhỏ, liên tục cải tiến và thích nghi với thay đổi trong quá trình phát triển.</li>
+<li>Điểm khác biệt lớn nhất giữa hai mô hình này là Thác nước không cho phép thay đổi yêu cầu sau khi đã hoàn thành giai đoạn phân tích, trong khi Agile cho phép thay đổi yêu cầu liên tục trong suốt quá trình phát triển để đáp ứng nhu cầu của khách hàng một cách linh hoạt hơn.</li>
+<li>Mô hình Thác nước thường phù hợp với các dự án có yêu cầu rõ ràng và ít thay đổi, trong khi Agile phù hợp với các dự án có yêu cầu thay đổi thường xuyên hoặc không rõ ràng ngay từ đầu.</li>
+<li>Mô hình Thác nước có thể dẫn đến việc phát hiện lỗi muộn trong quá trình phát triển, trong khi Agile cho phép phát hiện và sửa lỗi sớm hơn thông qua các vòng lặp ngắn và kiểm thử liên tục.</li>
+<li>Mô hình Thác nước thường yêu cầu tài liệu chi tiết và quy trình nghiêm ngặt, trong khi Agile tập trung vào sự hợp tác và giao tiếp giữa các bên liên quan hơn là tài liệu.</li>
+<li>Mô hình Thác nước có thể dẫn đến sự không hài lòng của khách hàng nếu yêu cầu thay đổi sau khi đã hoàn thành giai đoạn phân tích, trong khi Agile cho phép khách hàng tham gia vào quá trình phát triển và điều chỉnh yêu cầu theo thời gian.</li>
+<li>Mô hình Thác nước có thể phù hợp với các dự án có quy mô lớn và phức tạp, trong khi Agile thường phù hợp với các dự án nhỏ và vừa hoặc các dự án có tính chất đổi mới cao.</li>
+<li>
+<p>Mô hình Thác nước có thể dẫn đến việc phát triển phần mềm không đáp ứng được nhu cầu thực tế của người dùng nếu yêu cầu thay đổi sau khi đã hoàn thành giai đoạn phân tích, trong khi Agile cho phép điều chỉnh yêu cầu để đảm bảo rằng phần mềm đáp ứng được nhu cầu của người dùng.</p>
+</li>
+<li>
+<p>Là tài liệu mô tả chi tiết các yêu cầu về chức năng và phi chức năng mà hệ thống phải đáp ứng.</p>
+</li>
+<li>SRS cung cấp một cái nhìn tổng quan về những gì phần mềm sẽ làm, cách nó sẽ hoạt động và các ràng buộc liên quan đến việc phát triển phần mềm.</li>
+<li>SRS thường bao gồm các phần như: Giới thiệu, Mô tả tổng quan, Yêu cầu chức năng, Yêu cầu phi chức năng, Ràng buộc, Các giả định và phụ thuộc, v.v. SRS là một tài liệu quan trọng trong quá trình phát triển phần mềm vì nó giúp đảm bảo rằng tất cả các bên liên quan đều hiểu rõ về yêu cầu của hệ thống và có thể sử dụng nó làm cơ sở để thiết kế, phát triển và kiểm thử phần mềm.</li>
+<li>SRS giúp giảm thiểu sự hiểu lầm giữa các bên liên quan và đảm bảo rằng phần mềm được phát triển đúng cách để đáp ứng nhu cầu của khách hàng.</li>
+<li>SRS cũng giúp làm rõ các yêu cầu và ràng buộc của dự án, từ đó giúp đội phát triển phần mềm lập kế hoạch và thực hiện dự án một cách hiệu quả hơn.</li>
+<li>SRS có thể được sử dụng làm cơ sở để kiểm thử phần mềm, đảm bảo rằng phần mềm đáp ứng các yêu cầu đã được mô tả trong SRS.</li>
+<li>SRS cũng có thể được sử dụng trong giai đoạn bảo trì để hiểu rõ hơn về các yêu cầu của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>SRS là một tài liệu sống, có thể được cập nhật và điều chỉnh trong suốt quá trình phát triển phần mềm để phản ánh những thay đổi trong yêu cầu hoặc môi trường hoạt động.</li>
+<li>SRS giúp đảm bảo rằng tất cả các bên liên quan đều có cùng một hiểu biết về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó.</li>
+<li>SRS cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể kiểm soát được, từ đó giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</li>
+<li>SRS cũng giúp xác định các yêu cầu và ràng buộc của hệ thống, từ đó giúp đội ngũ phát triển phần mềm lập kế hoạch và thực hiện dự án một cách hiệu quả hơn.</li>
+<li>SRS cũng có thể được sử dụng làm cơ sở để kiểm thử phần mềm, đảm bảo rằng phần mềm đáp ứng các yêu cầu đã được mô tả trong SRS.</li>
+<li>SRS cũng có thể được sử dụng trong giai đoạn bảo trì để hiểu rõ hơn về các yêu cầu của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>SRS là một tài liệu sống, có thể được cập nhật và điều chỉnh trong suốt quá trình phát triển phần mềm để phản ánh những thay đổi trong yêu cầu hoặc môi trường hoạt động.</li>
+<li>SRS giúp đảm bảo rằng tất cả các bên liên quan đều có cùng một hiểu biết về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó.</li>
+<li>SRS cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể kiểm soát được, từ đó giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</li>
+<li>SRS cũng giúp xác định các yêu cầu và ràng buộc của hệ thống, từ đó giúp đội ngũ phát triển phần mềm lập kế hoạch và thực hiện dự án một cách hiệu quả hơn.</li>
+<li>SRS cũng có thể được sử dụng làm cơ sở để kiểm thử phần mềm, đảm bảo rằng phần mềm đáp ứng các yêu cầu đã được mô tả trong SRS.</li>
+<li>SRS cũng có thể được sử dụng trong giai đoạn bảo trì để hiểu rõ hơn về các yêu cầu của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>SRS là một tài liệu sống, có thể được cập nhật và điều chỉnh trong suốt quá trình phát triển phần mềm để phản ánh những thay đổi trong yêu cầu hoặc môi trường hoạt động.</li>
+<li>SRS giúp đảm bảo rằng tất cả các bên liên quan đều có cùng một hiểu biết về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó.</li>
+<li>
+<p>SRS cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể kiểm soát được, từ đó giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</p>
+</li>
+<li>
+<p>YC chức năng mô tả những gì hệ thống PHẢI LÀM (hành động). YC phi chức năng mô tả HỆ THỐNG HOẠT ĐỘNG NHƯ THẾ NÀO (hiệu năng, bảo mật...).</p>
+</li>
+<li>
+<p>Yêu cầu chức năng (Functional Requirement) mô tả những gì hệ thống phải làm, tức là các hành động, chức năng hoặc dịch vụ mà phần mềm phải cung cấp. Ví dụ: "Hệ thống phải cho phép người dùng đăng nhập bằng tên người dùng và mật khẩu."</p>
+</li>
+<li>Yêu cầu phi chức năng (Non-functional Requirement) mô tả cách thức hoạt động của hệ thống, tức là các thuộc tính chất lượng như hiệu năng, bảo mật, khả năng mở rộng, độ tin cậy, v.v. Ví dụ: "Hệ thống phải phản hồi trong vòng 2 giây khi người dùng đăng nhập."</li>
+<li>Sự khác biệt chính giữa hai loại yêu cầu này là yêu cầu chức năng tập trung vào hành động và chức năng của hệ thống, trong khi yêu cầu phi chức năng tập trung vào cách thức hoạt động và các thuộc tính chất lượng của hệ thống.</li>
+<li>Yêu cầu chức năng thường được mô tả dưới dạng các trường hợp sử dụng (use cases) hoặc các yêu cầu chi tiết, trong khi yêu cầu phi chức năng thường được mô tả dưới dạng các tiêu chuẩn chất lượng hoặc các ràng buộc kỹ thuật.</li>
+<li>Cả hai loại yêu cầu này đều quan trọng để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng, đồng thời có thể hoạt động hiệu quả và ổn định trong môi trường thực tế.</li>
+<li>Việc xác định và phân loại đúng các yêu cầu chức năng và phi chức năng cũng giúp đội ngũ phát triển phần mềm lập kế hoạch và thực hiện dự án một cách hiệu quả hơn, đồng thời đảm bảo rằng phần mềm đáp ứng được cả yêu cầu về chức năng và chất lượng.</li>
+<li>Yêu cầu chức năng thường là những yêu cầu bắt buộc mà phần mềm phải đáp ứng, trong khi yêu cầu phi chức năng có thể là những yêu cầu tùy chọn hoặc ưu tiên mà phần mềm nên đáp ứng để cải thiện trải nghiệm người dùng hoặc hiệu suất của hệ thống.</li>
+<li>
+<p>Việc đảm bảo rằng phần mềm đáp ứng đầy đủ cả yêu cầu chức năng và phi chức năng là một phần quan trọng của quá trình phát triển phần mềm và giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng.</p>
+</li>
+<li>
+<p>Phỏng vấn, Khảo sát bằng bảng hỏi, Quan sát thực tế, Phân tích tài liệu. </p>
+</li>
+<li>Phỏng vấn (Interviews): Trực tiếp trò chuyện với khách hàng hoặc người dùng cuối để thu thập thông tin về yêu cầu của họ.</li>
+<li>Khảo sát bằng bảng hỏi (Questionnaires): Sử dụng các câu hỏi có cấu trúc để thu thập dữ liệu từ một nhóm lớn khách hàng hoặc người dùng.</li>
+<li>Quan sát thực tế (Observation): Theo dõi cách người dùng tương tác với hệ thống hiện tại hoặc trong môi trường làm việc để hiểu rõ hơn về yêu cầu của họ.</li>
+<li>Phân tích tài liệu (Document Analysis): Xem xét các tài liệu hiện có như báo cáo, quy trình làm việc, hoặc phần mềm cũ để rút ra yêu cầu.</li>
+<li>Workshop: Tổ chức các buổi làm việc nhóm với khách hàng và các bên liên quan để thảo luận và xác định yêu cầu.</li>
+<li>Việc sử dụng kết hợp nhiều phương pháp thu thập yêu cầu có thể giúp đảm bảo rằng các yêu cầu được thu thập một cách toàn diện và chính xác, từ đó giúp đội ngũ phát triển phần mềm hiểu rõ hơn về nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Việc lựa chọn phương pháp thu thập yêu cầu phù hợp cũng phụ thuộc vào ngữ cảnh của dự án, số lượng và loại người dùng, cũng như nguồn lực có sẵn cho việc thu thập yêu cầu.</li>
+<li>Việc thu thập yêu cầu một cách hiệu quả là một phần quan trọng của quá trình phát triển phần mềm và giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Khách hàng, người dùng cuối, nhà quản lý, đội ngũ phát triển (Dev, Tester, BA...).</p>
+</li>
+<li>
+<p>Khách hàng (Customer): Người hoặc tổ chức đặt hàng và trả tiền cho phần mềm.</p>
+</li>
+<li>Người dùng cuối (End-users): Những người sẽ trực tiếp sử dụng phần mềm trong công việc hoặc cuộc sống hàng ngày.</li>
+<li>Nhà quản lý (Managers): Những người giám sát dự án và đảm bảo rằng nó được hoàn thành đúng hạn và trong ngân sách.</li>
+<li>Đội ngũ phát triển (Development team): Bao gồm các lập trình viên, kiểm thử viên, nhà phân tích yêu cầu, thiết kế viên, v.v. những người trực tiếp xây dựng phần mềm.</li>
+<li>Các bên liên quan khác có thể bao gồm nhà cung cấp, đối tác kinh doanh, cơ quan quản lý, v.v. tùy thuộc vào ngữ cảnh của dự án phần mềm.</li>
+<li>Việc hiểu rõ về các bên liên quan và nhu cầu của họ là một phần quan trọng của quá trình phát triển phần mềm và giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Việc quản lý các bên liên quan và đảm bảo rằng họ được tham gia vào quá trình phát triển phần mềm cũng là một phần quan trọng để đảm bảo thành công của dự án phần mềm và giúp xây dựng mối quan hệ tốt với khách hàng và người dùng cuối.</li>
+<li>Việc giao tiếp hiệu quả với các bên liên quan là rất quan trọng để thu thập thông tin, nhận phản hồi và điều chỉnh yêu cầu trong suốt quá trình phát triển phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều hiểu rõ về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó là một phần quan trọng của quá trình phát triển phần mềm.</li>
+<li>Việc quản lý rủi ro liên quan đến các bên liên quan cũng là một phần quan trọng để đảm bảo rằng dự án phần mềm được thực hiện một cách hiệu quả và có thể đạt được thành công.</li>
+<li>Việc xây dựng mối quan hệ tốt với các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều được thông tin đầy đủ và kịp thời về tiến độ và các vấn đề phát sinh trong quá trình phát triển phần mềm cũng là một phần quan trọng để duy trì mối quan hệ tốt và đảm bảo sự hợp tác hiệu quả.</li>
+<li>Việc quản lý các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều hiểu rõ về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó là một phần quan trọng của quá trình phát triển phần mềm.</li>
+<li>Việc quản lý rủi ro liên quan đến các bên liên quan cũng là một phần quan trọng để đảm bảo rằng dự án phần mềm được thực hiện một cách hiệu quả và có thể đạt được thành công.</li>
+<li>Việc xây dựng mối quan hệ tốt với các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều được thông tin đầy đủ và kịp thời về tiến độ và các vấn đề phát sinh trong quá trình phát triển phần mềm cũng là một phần quan trọng để duy trì mối quan hệ tốt và đảm bảo sự hợp tác hiệu quả.</li>
+<li>Việc quản lý các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều hiểu rõ về yêu cầu của hệ thống và có thể làm việc cùng nhau để phát triển phần mềm đáp ứng được những yêu cầu đó là một phần quan trọng của quá trình phát triển phần mềm.</li>
+<li>Việc quản lý rủi ro liên quan đến các bên liên quan cũng là một phần quan trọng để đảm bảo rằng dự án phần mềm được thực hiện một cách hiệu quả và có thể đạt được thành công.</li>
+<li>Việc xây dựng mối quan hệ tốt với các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Việc đảm bảo rằng tất cả các bên liên quan đều được thông tin đầy đủ và kịp thời về tiến độ và các vấn đề phát sinh trong quá trình phát triển phần mềm cũng là một phần quan trọng để duy trì mối quan hệ tốt và đảm bảo sự hợp tác hiệu quả.</li>
+<li>Việc quản lý các bên liên quan cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</li>
+<li>Giai đoạn Phân tích và Đặc tả yêu cầu.</li>
+</ul>
+<p><strong>Câu 2 (5 điểm)</strong><br />
+1. (1.5đ) Sơ đồ có 2 Actor: Thủ thư, Độc giả. Use-cases: Quản lý sách, Lập phiếu mượn, Nhận trả sách, Lập báo cáo, Tra cứu sách, Xem lịch sử.<br />
+2. (1.0đ) Có menu đăng nhập, phân quyền, giao diện chính hiển thị các tính năng cho từng đối tượng.<br />
+3. a. (1.0đ) Lớp Sách, Lớp Danh mục thể loại. b. (0.5đ) Cấu trúc bảng Sách (Mã, Tên, Tác giả, Mã Thể loại, Năm XB, Số lượng). c. (0.5đ) Giao diện form thêm sửa xóa. d. (0.5đ) Bảng test case với input hợp lệ và expected output là "Lưu thành công".</p>
+<hr />
+<h2>BỘ ĐỀ SỐ 2 (Trọng tâm: Chương 4, 5 - Mô hình hóa, Thiết kế)</h2>
+<h3>ĐỀ THI</h3>
+<p><strong>Câu I (5 điểm) - Trả lời ngắn gọn, súc tích các câu hỏi sau. Mỗi câu đúng được 0.5 điểm</strong></p>
+<ol>
+<li>Mô hình hóa phần mềm mang lại lợi ích gì?</li>
+<li>Giúp dễ hiểu, dễ giao tiếp, trực quan hóa cấu trúc và hành vi hệ thống trước khi code.</li>
+<li>Giúp phát hiện sớm các vấn đề thiết kế và yêu cầu không rõ ràng</li>
+<li>Giúp tạo ra một tài liệu tham khảo cho quá trình phát triển phần mềm và bảo trì sau này.</li>
+<li>Giúp cải thiện sự hợp tác giữa các thành viên trong nhóm phát triển phần mềm và các bên liên quan khác.</li>
+<li>Giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</li>
+<li>Giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm.</li>
+<li>Giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được.</li>
+<li>Giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>
+<p>Giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mô hình hóa.</p>
+</li>
+<li>
+<p>Biểu đồ lớp (Class Diagram) trong UML thể hiện khía cạnh nào của hệ thống?</p>
+</li>
+<li>Biểu đồ lớp (Class Diagram) trong UML thể hiện cấu trúc tĩnh của hệ thống, bao gồm các lớp, thuộc tính, phương thức và mối quan hệ giữa chúng. Biểu đồ lớp giúp mô tả cách các đối tượng trong hệ thống tương tác với nhau và cách chúng được tổ chức để thực hiện các chức năng của phần mềm.</li>
+<li>Biểu đồ lớp thường được sử dụng trong giai đoạn thiết kế phần mềm để xác định các lớp và đối tượng cần thiết để thực hiện các chức năng đã được mô tả trong sơ đồ Usecase.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn phát triển phần mềm để hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn kiểm thử để xác định các trường hợp kiểm thử dựa trên các lớp và đối tượng đã được mô tả trong biểu đồ lớp.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn bảo trì để hiểu rõ hơn về cấu trúc của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>Biểu đồ lớp là một công cụ quan trọng trong quá trình phát triển phần mềm và giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</li>
+<li>Biểu đồ lớp cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của hệ thống khi cần thiết.</li>
+<li>Biểu đồ lớp cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Biểu đồ lớp cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong biểu đồ lớp, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng để mô tả các mối quan hệ giữa các lớp, bao gồm kế thừa, kết tập, phụ thuộc và kết hợp, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng để mô tả các thuộc tính và phương thức của các lớp, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng để mô tả các ràng buộc và quy tắc liên quan đến các lớp và đối tượng, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng để mô tả các gói (packages) và các thành phần khác của hệ thống, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>
+<p>Biểu đồ lớp cũng có thể được sử dụng để mô tả các mối quan hệ giữa các gói và các thành phần khác của hệ thống, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</p>
+</li>
+<li>
+<p>Nêu 3 loại mối quan hệ cơ bản trong Biểu đồ lớp?</p>
+</li>
+<li>
+<p>Quan hệ kế thừa (Inheritance): Là mối quan hệ giữa một lớp cha (superclass) và một lớp con (subclass), trong đó lớp con kế thừa các thuộc tính và phương thức của lớp cha.</p>
+</li>
+<li>Quan hệ kết tập (Aggregation): Là mối quan hệ giữa một lớp tổng thể (whole) và một lớp thành phần (part), trong đó lớp tổng thể chứa một hoặc nhiều đối tượng của lớp thành phần, nhưng các đối tượng của lớp thành phần vẫn có thể tồn tại độc lập.</li>
+<li>Quan hệ phụ thuộc (Dependency): Là mối quan hệ giữa hai lớp, trong đó một lớp sử dụng hoặc phụ thuộc vào một lớp khác để thực hiện một chức năng nào đó, nhưng không có mối quan hệ lâu dài giữa chúng.</li>
+<li>Quan hệ kết hợp (Association): Là mối quan hệ giữa hai lớp, trong đó các đối tượng của hai lớp có thể liên kết với nhau và tương tác với nhau, nhưng không có mối quan hệ kế thừa hoặc kết tập giữa chúng.</li>
+<li>Quan hệ kế thừa (Inheritance) cho phép tái sử dụng mã nguồn và tạo ra một cấu trúc phân cấp giữa các lớp. Quan hệ kết tập (Aggregation) cho phép mô tả mối quan hệ "có một" giữa các lớp, trong khi quan hệ phụ thuộc (Dependency) cho phép mô tả mối quan hệ "sử dụng" giữa các lớp. Quan hệ kết hợp (Association) cho phép mô tả mối quan hệ "liên kết" giữa các lớp mà không có mối quan hệ kế thừa hoặc kết tập.</li>
+<li>Việc sử dụng đúng các loại mối quan hệ này trong thiết kế phần mềm giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Việc sử dụng các mối quan hệ này cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>
+<p>Việc sử dụng các mối quan hệ này cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong biểu đồ lớp, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Thiết kế kiến trúc phần mềm là gì?</p>
+</li>
+<li>Thiết kế kiến trúc phần mềm là quá trình xác định các thành phần chính của hệ thống phần mềm và cách chúng tương tác với nhau để đáp ứng các yêu cầu chức năng và phi chức năng của hệ thống. Thiết kế kiến trúc phần mềm giúp đảm bảo rằng phần mềm được xây dựng một cách có cấu trúc, có thể kiểm soát được và có khả năng mở rộng trong tương lai.</li>
+<li>Thiết kế kiến trúc phần mềm thường bao gồm việc xác định các mô-đun, lớp, giao diện và các thành phần khác của hệ thống, cũng như cách chúng tương tác với nhau thông qua các mối quan hệ và giao tiếp.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các mẫu kiến trúc phần mềm (architecture patterns) phù hợp để giải quyết các vấn đề thiết kế cụ thể và đáp ứng các yêu cầu của hệ thống.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các nguyên lý thiết kế phần mềm (design principles) để đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các ràng buộc và quy tắc liên quan đến kiến trúc của hệ thống, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các công nghệ và công cụ phù hợp để xây dựng phần mềm dựa trên kiến trúc đã được thiết kế, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các chiến lược để quản lý rủi ro và thay đổi trong quá trình phát triển phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm.</p>
+</li>
+<li>
+<p>Kể tên 2 mẫu kiến trúc phần mềm (Architecture Patterns) phổ biến?</p>
+</li>
+<li>Kiến trúc Client-Server: Trong mô hình này, hệ thống được chia thành hai phần chính: Client (khách hàng) và Server (máy chủ). Client gửi yêu cầu đến Server, và Server xử lý yêu cầu và trả về kết quả cho Client. Mô hình này thường được sử dụng trong các ứng dụng web và mạng.</li>
+<li>Kiến trúc MVC (Model-View-Controller): Mô hình này chia hệ thống thành ba phần chính: Model (mô hình dữ liệu), View (giao diện người dùng) và Controller (bộ điều khiển). Model quản lý dữ liệu và logic nghiệp vụ, View hiển thị dữ liệu và giao diện người dùng, và Controller xử lý các yêu cầu từ người dùng và cập nhật Model và View tương ứng. Mô hình này thường được sử dụng trong phát triển ứng dụng web và desktop.</li>
+<li>Kiến trúc Microservices: Trong mô hình này, hệ thống được chia thành nhiều dịch vụ nhỏ, độc lập và có thể triển khai riêng biệt. Mỗi dịch vụ thực hiện một chức năng cụ thể và giao tiếp với nhau thông qua các API. Mô hình này thường được sử dụng trong các ứng dụng lớn và phức tạp để tăng tính linh hoạt và khả năng mở rộng.</li>
+<li>Kiến trúc Layered (Kiến trúc phân lớp): Trong mô hình này hệ thống được chia thành các lớp (layers) khác nhau, mỗi lớp có một chức năng cụ thể và chỉ giao tiếp với các lớp liền kề. Mô hình này giúp tách biệt các phần của hệ thống và tăng tính modularity.</li>
+<li>Kiến trúc Event-Driven (Kiến trúc hướng sự kiện): Trong mô hình này, hệ thống được thiết kế để phản ứng với các sự kiện hoặc thông điệp. Các thành phần của hệ thống giao tiếp với nhau thông qua việc gửi và nhận các sự kiện, giúp tăng tính linh hoạt và khả năng mở rộng của hệ thống.</li>
+<li>Kiến trúc Service-Oriented (Kiến trúc hướng dịch vụ): Trong mô hình này, hệ thống được chia thành các dịch vụ độc lập, mỗi dịch vụ thực hiện một chức năng cụ thể và giao tiếp với nhau thông qua các API. Mô hình này giúp tăng tính linh hoạt và khả năng mở rộng của hệ thống, đồng thời giúp giảm sự phụ thuộc giữa các thành phần của hệ thống.</li>
+<li>Kiến trúc Serverless (Kiến trúc không máy chủ): Trong mô hình này, hệ thống được xây dựng trên nền tảng đám mây và không yêu cầu quản lý máy chủ. Các chức năng của hệ thống được triển khai dưới dạng các hàm (functions) và chỉ được kích hoạt khi có yêu cầu, giúp giảm chi phí và tăng tính linh hoạt của hệ thống.</li>
+<li>Kiến trúc Domain-Driven Design (DDD): Trong mô hình này, hệ thống được thiết kế dựa trên các khái niệm và mô hình của lĩnh vực nghiệp vụ (domain) mà phần mềm đang phục vụ. Mô hình này giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong lĩnh vực nghiệp vụ.</li>
+<li>Kiến trúc Hexagonal (Hexagonal Architecture): Trong mô hình này, hệ thống được thiết kế với một lõi (core) chứa logic nghiệp vụ và các cổng (ports) để giao tiếp với các thành phần bên ngoài. Mô hình này giúp tách biệt logic nghiệp vụ khỏi các chi tiết triển khai và tăng tính linh hoạt của hệ thống.</li>
+<li>
+<p>Kiến trúc Model-View-ViewModel (MVVM): Trong mô hình này, hệ thống được chia thành ba phần chính: Model (mô hình dữ liệu), View (giao diện người dùng) và ViewModel (bộ điều khiển giao diện). Model quản lý dữ liệu và logic nghiệp vụ, View hiển thị dữ liệu và giao diện người dùng, và ViewModel xử lý các yêu cầu từ người dùng và cập nhật Model và View tương ứng. Mô hình này thường được sử dụng trong phát triển ứng dụng desktop và mobile.</p>
+</li>
+<li>
+<p>Nguyên lý Cohesion (Độ gắn kết) trong thiết kế module là gì?</p>
+</li>
+<li>Nguyên lý Cohesion (Độ gắn kết) trong thiết kế module là một nguyên lý thiết kế phần mềm đo lường mức độ liên quan mật thiết giữa các thành phần bên trong cùng một module. Một module có độ gắn kết cao (High Cohesion) nghĩa là tất cả các thành phần bên trong module đều liên quan chặt chẽ với nhau và thực hiện một chức năng cụ thể. Ngược lại, một module có độ gắn kết thấp (Low Cohesion) nghĩa là các thành phần bên trong module không liên quan chặt chẽ với nhau và thực hiện nhiều chức năng khác nhau.</li>
+<li>Nguyên lý Cohesion giúp đảm bảo rằng module được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Nguyên lý Cohesion cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Nguyên lý Cohesion cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên lý Cohesion cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>
+<p>Nguyên lý Cohesion cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module thực hiện một chức năng cụ thể và có liên quan chặt chẽ với nhau, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm. </p>
+</li>
+<li>
+<p>Nguyên lý Coupling (Độ phụ thuộc) trong thiết kế module là gì?</p>
+</li>
+<li>Nguyên lý Coupling (Độ phụ thuộc) trong thiết kế module là một nguyên lý thiết kế phần mềm đo lường mức độ phụ thuộc và tương tác lẫn nhau giữa các module khác nhau. Một module có độ phụ thuộc thấp (Low Coupling) nghĩa là nó không phụ thuộc nhiều vào các module khác và có thể hoạt động độc lập. Ngược lại, một module có độ phụ thuộc cao (High Coupling) nghĩa là nó phụ thuộc nhiều vào các module khác và không thể hoạt động độc lập.</li>
+<li>Nguyên lý Coupling giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Nguyên lý Coupling cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Nguyên lý Coupling cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên lý Coupling cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>
+<p>Nguyên lý Coupling cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module có thể hoạt động độc lập và không phụ thuộc nhiều vào các module khác, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</p>
+</li>
+<li>
+<p>Thiết kế tốt đòi hỏi Coupling và Cohesion như thế nào?</p>
+</li>
+<li>Thiết kế tốt đòi hỏi Coupling thấp (Low Coupling) và Cohesion cao (High Cohesion). Điều này có nghĩa là mỗi module nên thực hiện một chức năng cụ thể và có liên quan chặt chẽ với nhau (Cohesion cao), đồng thời không phụ thuộc nhiều vào các module khác và có thể hoạt động độc lập (Coupling thấp).</li>
+<li>Coupling thấp giúp giảm sự phụ thuộc giữa các module khác nhau, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm. Cohesion cao giúp đảm bảo rằng module được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module có thể hoạt động độc lập và không phụ thuộc nhiều vào các module khác, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</li>
+<li>Mục đích chính của việc thiết kế cơ sở dữ liệu là gì?</li>
+<li>Mục đích chính của việc thiết kế cơ sở dữ liệu là để lưu trữ dữ liệu một cách an toàn, toàn vẹn, tránh dư thừa, dễ dàng truy xuất và quản lý. Thiết kế cơ sở dữ liệu giúp đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được lưu trữ một cách an toàn và có thể được bảo vệ khỏi các mối đe dọa bảo mật, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được lưu trữ một cách toàn vẹn và có thể được kiểm soát để tránh các lỗi và sự cố liên quan đến dữ liệu, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm, từ đó giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm.</li>
+<li>
+<p>Thiết kế cơ sở dữ liệu cũng giúp giảm sự dư thừa dữ liệu bằng cách đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</p>
+</li>
+<li>
+<p>Nêu 3 nguyên tắc cơ bản khi thiết kế giao diện người dùng (UI)?</p>
+</li>
+<li>Thân thiện dễ sử dụng: Giao diện người dùng nên được thiết kế sao cho người dùng có thể dễ dàng hiểu và sử dụng mà không cần phải đọc hướng dẫn hoặc có kiến thức kỹ thuật sâu về phần mềm.</li>
+<li>Nhất quán: Giao diện người dùng nên có sự nhất quán trong cách bố trí, màu sắc, kiểu chữ và cách tương tác để người dùng có thể dễ dàng nhận biết và sử dụng các chức năng của phần mềm.</li>
+<li>Có cơ chế phản hồi (Feedback): Giao diện người dùng nên cung cấp phản hồi rõ ràng và kịp thời khi người dùng thực hiện một hành động, giúp họ hiểu rằng hành động của mình đã được nhận và đang được xử lý.</li>
+<li>Cho phép phục hồi lỗi: Giao diện người dùng nên cung cấp các cơ chế để người dùng có thể dễ dàng phục hồi từ các lỗi hoặc sai sót, chẳng hạn như cung cấp nút "Hoàn tác" (Undo) hoặc "Làm lại" (Redo) để người dùng có thể sửa lỗi một cách dễ dàng.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được bố trí một cách hợp lý và dễ nhìn, từ đó giúp người dùng có thể dễ dàng tìm thấy và sử dụng các chức năng của phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với ngữ cảnh sử dụng và nhu cầu của người dùng, từ đó giúp tăng tính hiệu quả và sự hài lòng của người dùng khi sử dụng phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế giao diện người dùng khác, chẳng hạn như nguyên tắc Gestalt, để giúp người dùng dễ dàng nhận biết và sử dụng các chức năng của phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế trải nghiệm người dùng (UX) để giúp người dùng có trải nghiệm tốt khi sử dụng phần mềm, từ đó giúp tăng tính hài lòng và sự trung thành của người dùng đối với phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế tương tác người dùng (UI/UX) để giúp người dùng có trải nghiệm tốt khi sử dụng phần mềm, từ đó giúp tăng tính hài lòng và sự trung thành của người dùng đối với phần mềm.</li>
+</ol>
+<p><strong>Câu II (5 điểm)</strong><br />
+Phòng khám đa khoa Tâm An muốn xây dựng phần mềm "Quản lý khám bệnh" cho phép:<br />
+- Bác sĩ thực hiện các chức năng:<br />
+  + Lập phiếu khám bệnh (ghi nhận chuẩn đoán, kết luận)<br />
+  + Kê đơn thuốc<br />
+  + Tra cứu lịch sử khám bệnh của bệnh nhân<br />
+- Nhân viên Lễ tân thực hiện chức năng:<br />
+  + Quản lý thông tin bệnh nhân (Tiếp nhận, thêm, sửa thông tin)<br />
+  + Sắp xếp lịch hẹn khám</p>
+<p><strong>THÔNG TIN BỆNH NHÂN (Form nhập liệu)</strong><br />
+- Mã bệnh nhân: [điền]<br />
+- Họ và tên: [điền]<br />
+- Ngày sinh: [điền]<br />
+- Giới tính: [điền]<br />
+- Số điện thoại: [điền]<br />
+- Tiền sử bệnh nền: [điền]<br />
+<em>Ghi chú:</em><br />
+- Mã bệnh nhân tự động sinh. Số điện thoại phải đúng định dạng 10 số.<br />
+- Họ tên, Ngày sinh không được để trống.</p>
+<ol>
+<li><em>(1.5đ)</em> Hãy vẽ Sơ đồ Usecase cho phần mềm "Quản lý khám bệnh".</li>
+<li><em>(1.0đ)</em> Hãy vẽ Sơ đồ màn hình giao diện tổng quan cho phần mềm này.</li>
+<li><em>(2.5đ)</em> Hãy thực hiện cho chức năng "Quản lý thông tin bệnh nhân" theo các bước sau:<br />
+   a. (1.0đ) Vẽ sơ đồ lớp hướng đối tượng cho chức năng này.<br />
+   b. (0.5đ) Thiết kế dữ liệu lưu trữ cho chức năng này.<br />
+   c. (0.5đ) Thiết kế Màn hình giao diện thêm/sửa bệnh nhân.<br />
+   d. (0.5đ) Thiết kế TestCase cho trường hợp "Nhập thiếu số điện thoại" (Thêm bệnh nhân thất bại).</li>
+</ol>
+<h3>ĐÁP ÁN ĐỀ 2</h3>
+<p><strong>Câu 1 (5 điểm)</strong><br />
+1. Giúp dễ hiểu, dễ giao tiếp, trực quan hóa cấu trúc và hành vi hệ thống trước khi code.<br />
+- Giúp phát hiện sớm các vấn đề thiết kế và yêu cầu không rõ ràng <br />
+- Giúp tạo ra một tài liệu tham khảo cho quá trình phát triển phần mềm và bảo trì sau này.<br />
+- Giúp cải thiện sự hợp tác giữa các thành viên trong nhóm phát triển phần mềm và các bên liên quan khác.<br />
+- Giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.<br />
+- Giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm.<br />
+- Giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được.<br />
+- Giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.<br />
+- Giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mô hình hóa.</p>
+<ol>
+<li>Thể hiện cấu trúc tĩnh của hệ thống (các lớp, thuộc tính, phương thức và mối quan hệ giữa chúng).</li>
+<li>Biểu đồ lớp giúp mô tả cách các đối tượng trong hệ thống tương tác với nhau và cách chúng được tổ chức để thực hiện các chức năng của phần mềm.</li>
+<li>Biểu đồ lớp thường được sử dụng trong giai đoạn thiết kế phần mềm để xác định các lớp và đối tượng cần thiết để thực hiện các chức năng đã được mô tả trong sơ đồ Usecase.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn phát triển phần mềm để hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn kiểm thử để xác định các trường hợp kiểm thử dựa trên các lớp và đối tượng đã được mô tả trong biểu đồ lớp.</li>
+<li>Biểu đồ lớp cũng có thể được sử dụng trong giai đoạn bảo trì để hiểu rõ hơn về cấu trúc của hệ thống khi cần sửa đổi hoặc nâng cấp phần mềm.</li>
+<li>Biểu đồ lớp là một công cụ quan trọng trong quá trình phát triển phần mềm và giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm.</li>
+<li>Biểu đồ lớp cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của hệ thống khi cần thiết.</li>
+<li>Biểu đồ lớp cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>
+<p>Biểu đồ lớp cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong biểu đồ lớp, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Kế thừa (Inheritance), Kết tập (Aggregation), Phụ thuộc (Dependency), Kết hợp (Association).</p>
+</li>
+<li>Quan hệ kế thừa (Inheritance) cho phép tái sử dụng mã nguồn và tạo ra một cấu trúc phân cấp giữa các lớp. Quan hệ kết tập (Aggregation) cho phép mô tả mối quan hệ "có một" giữa các lớp, trong khi quan hệ phụ thuộc (Dependency) cho phép mô tả mối quan hệ "sử dụng" giữa các lớp. Quan hệ kết hợp (Association) cho phép mô tả mối quan hệ "liên kết" giữa các lớp mà không có mối quan hệ kế thừa hoặc kết tập.</li>
+<li>Việc sử dụng đúng các loại mối quan hệ này trong thiết kế phần mềm giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các lớp và đối tượng đã được xác định.</li>
+<li>Việc sử dụng các mối quan hệ này cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>
+<p>Việc sử dụng các mối quan hệ này cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong biểu đồ lớp, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Là quá trình xác định các thành phần hệ thống chính và sự tương tác của chúng.</p>
+</li>
+<li>
+<p>Thiết kế kiến trúc phần mềm giúp đảm bảo phần mềm được xây dựng có cấu trúc, có thể kiểm soát và mở rộng trong tương lai.</p>
+</li>
+<li>Thiết kế kiến trúc phần mềm thường bao gồm việc xác định các mô-đun, lớp, giao diện và các thành phần khác của hệ thống, cũng như cách chúng tương tác với nhau thông qua các mối quan hệ và giao tiếp.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các mẫu kiến trúc phần mềm (architecture patterns) phù hợp để giải quyết các vấn đề thiết kế cụ thể và đáp ứng các yêu cầu của hệ thống.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các nguyên lý thiết kế phần mềm (design principles) để đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các ràng buộc và quy tắc liên quan đến kiến trúc của hệ thống, từ đó giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định.</li>
+<li>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các công nghệ và công cụ phù hợp để xây dựng phần mềm dựa trên kiến trúc đã được thiết kế, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Thiết kế kiến trúc phần mềm cũng bao gồm việc xác định các chiến lược để quản lý rủi ro và thay đổi trong quá trình phát triển phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và có thể đáp ứng được nhu cầu của khách hàng và người dùng cuối, đồng thời giúp tăng khả năng thành công của dự án phần mềm. </p>
+</li>
+<li>
+<p>Kiến trúc Client-Server, Kiến trúc MVC (Model-View-Controller), Kiến trúc Microservices.</p>
+</li>
+<li>Kiến trúc Client-Server: Trong mô hình này, hệ thống được chia thành hai phần chính: Client (khách hàng) và Server (máy chủ). Client gửi yêu cầu đến Server, và Server xử lý yêu cầu và trả về kết quả cho Client. Mô hình này thường được sử dụng trong các ứng dụng web và mạng.</li>
+<li>Kiến trúc MVC (Model-View-Controller): Mô hình này chia hệ thống thành ba phần chính: Model (mô hình dữ liệu), View (giao diện người dùng) và Controller (bộ điều khiển). Model quản lý dữ liệu và logic nghiệp vụ, View hiển thị dữ liệu và giao diện người dùng, và Controller xử lý các yêu cầu từ người dùng và cập nhật Model và View tương ứng. Mô hình này thường được sử dụng trong phát triển ứng dụng web và desktop.</li>
+<li>Kiến trúc Microservices: Trong mô hình này, hệ thống được chia thành nhiều dịch vụ nhỏ, độc lập và có thể triển khai riêng biệt. Mỗi dịch vụ thực hiện một chức năng cụ thể và giao tiếp với nhau thông qua các API. Mô hình này thường được sử dụng trong các ứng dụng lớn và phức tạp để tăng tính linh hoạt và khả năng mở rộng.</li>
+<li>
+<p>Kiến trúc Layered (Kiến trúc phân lớp), Kiến trúc Event-Driven (Kiến trúc hướng sự kiện), Kiến trúc Service-Oriented (Kiến trúc hướng dịch vụ), Kiến trúc Serverless (Kiến trúc không máy chủ), Kiến trúc Domain-Driven Design (DDD), Kiến trúc Hexagonal (Hexagonal Architecture), Kiến trúc Model-View-ViewModel (MVVM).</p>
+</li>
+<li>
+<p>Độ đo mức độ liên quan mật thiết giữa các thành phần bên trong cùng một module.</p>
+</li>
+<li>Một module có độ gắn kết cao (High Cohesion) nghĩa là tất cả các thành phần bên trong module đều liên quan chặt chẽ với nhau và thực hiện một chức năng cụ thể. Ngược lại, một module có độ gắn kết thấp (Low Cohesion) nghĩa là các thành phần bên trong module không liên quan chặt chẽ với nhau và thực hiện nhiều chức năng khác nhau.</li>
+<li>Nguyên lý Cohesion giúp đảm bảo rằng module được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Nguyên lý Cohesion cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Nguyên lý Cohesion cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên lý Cohesion cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>
+<p>Nguyên lý Cohesion cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module thực hiện một chức năng cụ thể và có liên quan chặt chẽ với nhau, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</p>
+</li>
+<li>
+<p>Độ đo mức độ phụ thuộc và tương tác lẫn nhau giữa các module khác nhau.</p>
+</li>
+<li>Một module có độ phụ thuộc thấp (Low Coupling) nghĩa là nó không phụ thuộc nhiều vào các module khác và có thể hoạt động độc lập. Ngược lại, một module có độ phụ thuộc cao (High Coupling) nghĩa là nó phụ thuộc nhiều vào các module khác và không thể hoạt động độc lập.</li>
+<li>Nguyên lý Coupling giúp đảm bảo rằng phần mềm được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Nguyên lý Coupling cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Nguyên lý Coupling cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên lý Coupling cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>
+<p>Nguyên lý Coupling cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module có thể hoạt động độc lập và không phụ thuộc nhiều vào các module khác, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</p>
+</li>
+<li>
+<p>Cohesion cao (High Cohesion) và Coupling thấp (Low Coupling).</p>
+</li>
+<li>Thiết kế tốt đòi hỏi Coupling thấp (Low Coupling) và Cohesion cao (High Cohesion). Điều này có nghĩa là mỗi module nên thực hiện một chức năng cụ thể và có liên quan chặt chẽ với nhau (Cohesion cao), đồng thời không phụ thuộc nhiều vào các module khác và có thể hoạt động độc lập (Coupling thấp).</li>
+<li>Coupling thấp giúp giảm sự phụ thuộc giữa các module khác nhau, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm. Cohesion cao giúp đảm bảo rằng module được thiết kế một cách có cấu trúc và có thể kiểm soát được, đồng thời giúp hướng dẫn việc mã hóa và xây dựng phần mềm dựa trên các thành phần đã được xác định trong module.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong module, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế với Coupling thấp và Cohesion cao cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của module khi cần thiết.</li>
+<li>
+<p>Thiết kế với Coupling thấp và Cohesion cao cũng giúp giảm sự phụ thuộc giữa các module khác nhau bằng cách đảm bảo rằng mỗi module có thể hoạt động độc lập và không phụ thuộc nhiều vào các module khác, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</p>
+</li>
+<li>
+<p>Lưu trữ dữ liệu an toàn, toàn vẹn, tránh dư thừa, dễ dàng truy xuất và quản lý.</p>
+</li>
+<li>Thiết kế cơ sở dữ liệu giúp đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được lưu trữ một cách an toàn và có thể được bảo vệ khỏi các mối đe dọa bảo mật, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được lưu trữ một cách toàn vẹn và có thể được kiểm soát để tránh các lỗi và sự cố liên quan đến dữ liệu, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm, từ đó giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp giảm sự dư thừa dữ liệu bằng cách đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể được truy cập và sử dụng một cách hiệu quả trong quá trình phát triển phần mềm, từ đó giúp tăng tính modularity của hệ thống và giảm sự phức tạp của phần mềm.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong thiết kế cơ sở dữ liệu, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà thiết kế và phát triển phần mềm dễ dàng điều chỉnh cấu trúc của cơ sở dữ liệu khi cần thiết.</li>
+<li>Thiết kế cơ sở dữ liệu cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng thiết kế được thực hiện một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>
+<p>Thiết kế cơ sở dữ liệu cũng giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách đảm bảo rằng dữ liệu được lưu trữ một cách an toàn, toàn vẹn, tránh dư thừa, dễ dàng truy xuất và quản lý.</p>
+</li>
+<li>
+<p>Thân thiện dễ sử dụng, Nhất quán, Có cơ chế phản hồi (Feedback), Cho phép phục hồi lỗi.</p>
+</li>
+<li>Thân thiện dễ sử dụng: Giao diện người dùng nên được thiết kế sao cho người dùng có thể dễ dàng hiểu và sử dụng mà không cần phải đọc hướng dẫn hoặc có kiến thức kỹ thuật sâu về phần mềm.</li>
+<li>Nhất quán: Giao diện người dùng nên có sự nhất quán trong cách bố trí, màu sắc, kiểu chữ và cách tương tác để người dùng có thể dễ dàng nhận biết và sử dụng các chức năng của phần mềm.</li>
+<li>Có cơ chế phản hồi (Feedback): Giao diện người dùng nên cung cấp phản hồi rõ ràng và kịp thời khi người dùng thực hiện một hành động, giúp họ hiểu rằng hành động của mình đã được nhận và đang được xử lý.</li>
+<li>Cho phép phục hồi lỗi: Giao diện người dùng nên cung cấp các cơ chế để người dùng có thể dễ dàng phục hồi từ các lỗi hoặc sai sót, chẳng hạn như cung cấp nút "Hoàn tác" (Undo) hoặc "Làm lại" (Redo) để người dùng có thể sửa lỗi một cách dễ dàng.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được bố trí một cách hợp lý và dễ nhìn, từ đó giúp người dùng có thể dễ dàng tìm thấy và sử dụng các chức năng của phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với ngữ cảnh sử dụng và nhu cầu của người dùng, từ đó giúp tăng tính hiệu quả và sự hài lòng của người dùng khi sử dụng phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế giao diện người dùng khác, chẳng hạn như nguyên tắc Gestalt, để giúp người dùng dễ dàng nhận biết và sử dụng các chức năng của phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế trải nghiệm người dùng (UX) để giúp người dùng có trải nghiệm tốt khi sử dụng phần mềm, từ đó giúp tăng tính hài lòng và sự trung thành của người dùng đối với phần mềm.</li>
+<li>Thiết kế giao diện người dùng cũng nên đảm bảo rằng các yếu tố giao diện được thiết kế sao cho phù hợp với các nguyên tắc thiết kế tương tác người dùng (UI/UX) để giúp người dùng có trải nghiệm tốt khi sử dụng phần mềm, từ đó giúp tăng tính hài lòng và sự trung thành của người dùng đối với phần mềm.</li>
+</ol>
+<p><strong>Câu 2 (5 điểm)</strong><br />
+1. (1.5đ) Actor: Bác sĩ, Lễ tân. Usecase tương ứng từ đề bài.<br />
+2. (1.0đ) Layout giao diện có sidebar chức năng phân quyền rõ ràng.<br />
+3. a. (1.0đ) Lớp Bệnh nhân, Lớp Phiếu Khám. b. (0.5đ) Bảng Bệnh nhân (Mã, Tên, Ngày sinh...). c. (0.5đ) Form nhập thông tin. d. (0.5đ) Test case: Input đủ thông tin nhưng để trống số điện thoại -&gt; Báo lỗi "Vui lòng nhập số điện thoại".</p>
+<hr />
+<h2>BỘ ĐỀ SỐ 3 (Trọng tâm: Chương 6, 7 - Lập trình, Kiểm thử)</h2>
+<h3>ĐỀ THI</h3>
+<p><strong>Câu I (5 điểm) - Trả lời ngắn gọn, súc tích các câu hỏi sau. Mỗi câu đúng được 0.5 điểm</strong><br />
+1. Mã nguồn sạch (Clean code) mang lại lợi ích gì cho đội phát triển?<br />
+- Dễ đọc, dễ hiểu, dễ mở rộng, giảm thiểu bug, thuận tiện cho việc bảo trì và làm việc nhóm.<br />
+- Mã nguồn sạch giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà phát triển dễ dàng hiểu và làm việc với mã nguồn, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.<br />
+- Mã nguồn sạch cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết.<br />
+- Mã nguồn sạch cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.<br />
+- Mã nguồn sạch cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+<ol>
+<li>Trình bày 4 tính chất cơ bản của Lập trình hướng đối tượng (OOP)?</li>
+<li>Tính Đóng gói (Encapsulation): Là khả năng của một đối tượng để ẩn đi các chi tiết bên trong và chỉ cung cấp một giao diện công khai để tương tác với nó. Điều này giúp bảo vệ dữ liệu và giảm sự phụ thuộc giữa các phần của hệ thống.</li>
+<li>Tính Kế thừa (Inheritance): Là khả năng của một lớp con để kế thừa các thuộc tính và phương thức của một lớp cha. Điều này giúp tái sử dụng mã nguồn và tạo ra một cấu trúc phân cấp giữa các lớp.</li>
+<li>Tính Đa hình (Polymorphism): Là khả năng của một đối tượng để có thể được sử dụng như một đối tượng của lớp cha hoặc một lớp con. Điều này giúp tăng tính linh hoạt và khả năng mở rộng của hệ thống.</li>
+<li>Tính Trừu tượng (Abstraction): Là khả năng của một đối tượng để ẩn đi các chi tiết không cần thiết và chỉ cung cấp các thuộc tính và phương thức cần thiết để tương tác với nó. Điều này giúp giảm sự phức tạp của hệ thống và tăng tính modularity của phần mềm.</li>
+<li>
+<p>Tính Đóng gói (Encapsulation), Tính Kế thừa (Inheritance), Tính Đa hình (Polymorphism), Tính Trừu tượng (Abstraction).</p>
+</li>
+<li>
+<p>Tái cấu trúc mã nguồn (Refactoring) nghĩa là gì?</p>
+</li>
+<li>Quá trình thay đổi cấu trúc mã nguồn bên trong để code tốt hơn mà không làm thay đổi hành vi bên ngoài của hệ thống.</li>
+<li>Tái cấu trúc mã nguồn giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Tái cấu trúc mã nguồn cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Kiểm thử phần mềm (Software Testing) nhằm mục đích gì?</p>
+</li>
+<li>Tìm ra lỗi (bug), đảm bảo phần mềm hoạt động đúng yêu cầu và nâng cao chất lượng phần mềm. </li>
+<li>Kiểm thử phần mềm giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà phát triển xác định và sửa lỗi trong phần mềm, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Kiểm thử phần mềm cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử phần mềm cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử phần mềm cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Sự khác biệt cốt lõi giữa Verification (Xác minh) và Validation (Thẩm định) là gì?</li>
+<li>Verification: "Chúng ta đang làm phần mềm đúng cách chứ?" (đúng quy trình). Validation: "Chúng ta đang làm đúng phần mềm mà khách hàng cần chứ?" (đúng nhu cầu).</li>
+<li>Verification tập trung vào việc đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation tập trung vào việc đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification thường được thực hiện trong giai đoạn phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường được thực hiện trong giai đoạn kiểm thử phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification thường được thực hiện bởi các nhà phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường được thực hiện bởi các nhà kiểm thử phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification thường tập trung vào việc kiểm tra các quy trình và phương pháp phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường tập trung vào việc kiểm tra các chức năng và tính năng của phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen (Black-box testing) là gì?</li>
+<li>Kiểm thử dựa trên yêu cầu chức năng mà không cần biết cấu trúc code bên trong.</li>
+<li>Kiểm thử hộp đen giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà kiểm thử tập trung vào việc kiểm tra các chức năng và tính năng của phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng (White-box testing) là gì?</li>
+<li>Kiểm thử dựa trên việc xem xét chi trúc logic, thuật toán, mã nguồn bên trong của phần mềm.</li>
+<li>Kiểm thử hộp trắng giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà kiểm thử tập trung vào việc kiểm tra các chi tiết bên trong của phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Kiểm thử hộp trắng cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Nêu 4 cấp độ kiểm thử phần mềm (Levels of Testing) theo thứ tự?</p>
+</li>
+<li>Kiểm thử đơn vị (Unit Test) -&gt; Kiểm thử tích hợp (Integration Test) -&gt; Kiểm thử hệ thống (System Test) -&gt; Kiểm thử chấp nhận (Acceptance Test).</li>
+<li>Kiểm thử đơn vị (Unit Test) là cấp độ kiểm thử đầu tiên, tập trung vào việc kiểm tra các thành phần nhỏ nhất của phần mềm, thường là các hàm hoặc phương thức riêng lẻ, để đảm bảo rằng chúng hoạt động đúng cách.</li>
+<li>Kiểm thử tích hợp (Integration Test) là cấp độ kiểm thử thứ hai, tập trung vào việc kiểm tra sự tương tác giữa các thành phần đã được kiểm thử đơn vị để đảm bảo rằng chúng hoạt động đúng cách khi kết hợp với nhau.</li>
+<li>Kiểm thử hệ thống (System Test) là cấp độ kiểm thử thứ ba, tập trung vào việc kiểm tra toàn bộ hệ thống phần mềm để đảm bảo rằng nó đáp ứng được các yêu cầu đã được mô tả trong mã nguồn và hoạt động đúng cách trong môi trường thực tế.</li>
+<li>
+<p>Kiểm thử chấp nhận (Acceptance Test) là cấp độ kiểm thử cuối cùng, tập trung vào việc kiểm tra phần mềm từ góc độ của người dùng cuối để đảm bảo rằng nó đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Một Test case (Ca kiểm thử) tiêu chuẩn cần có những thành phần nào?</p>
+</li>
+<li>ID, Tên testcase, Tiền điều kiện, Các bước thực hiện, Kết quả mong đợi, Kết quả thực tế.</li>
+<li>ID: Mã định danh duy nhất cho mỗi test case để dễ dàng quản lý và theo dõi.</li>
+<li>Tên testcase: Mô tả ngắn gọn về mục đích của test case để người kiểm thử có thể hiểu nhanh chóng về nội dung của test case.</li>
+<li>Tiền điều kiện: Các điều kiện hoặc trạng thái cần thiết trước khi thực hiện test case, giúp đảm bảo rằng test case được thực hiện trong môi trường phù hợp.</li>
+<li>Các bước thực hiện: Mô tả chi tiết các bước cần thực hiện để thực hiện test case, giúp người kiểm thử có thể thực hiện đúng cách và đảm bảo rằng test case được thực hiện một cách nhất quán.</li>
+<li>Kết quả mong đợi: Mô tả kết quả mà test case dự kiến sẽ đạt được nếu phần mềm hoạt động đúng cách, giúp người kiểm thử có thể so sánh với kết quả thực tế để xác định xem test case đã thành công hay thất bại.</li>
+<li>
+<p>Kết quả thực tế: Mô tả kết quả thực tế sau khi thực hiện test case, giúp người kiểm thử có thể so sánh với kết quả mong đợi để xác định xem test case đã thành công hay thất bại, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Bảo trì phần mềm là gì và nêu 1 loại bảo trì?</p>
+</li>
+<li>Quá trình thay đổi, sửa lỗi, nâng cấp phần mềm sau khi đã bàn giao. Phân loại: Bảo trì sửa lỗi, Bảo trì thích nghi, Bảo trì hoàn thiện, Bảo trì phòng ngừa.</li>
+<li>Bảo trì phần mềm giúp đảm bảo rằng phần mềm được duy trì và phát triển đúng cách sau khi đã được bàn giao cho khách hàng và người dùng cuối bằng cách giúp các nhà phát triển sửa lỗi, nâng cấp tính năng và điều chỉnh phần mềm để đáp ứng được các yêu cầu mới hoặc thay đổi trong môi trường hoạt động của phần mềm.</li>
+<li>Bảo trì sửa lỗi là loại bảo trì tập trung vào việc sửa các lỗi hoặc sự cố đã được phát hiện trong phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm hoạt động đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì thích nghi là loại bảo trì tập trung vào việc điều chỉnh phần mềm để đáp ứng được các yêu cầu mới hoặc thay đổi trong môi trường hoạt động của phần mềm, giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì hoàn thiện là loại bảo trì tập trung vào việc nâng cấp tính năng hoặc cải thiện hiệu suất của phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì phòng ngừa là loại bảo trì tập trung vào việc thực hiện các biện pháp để ngăn chặn các lỗi hoặc sự cố có thể xảy ra trong phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm được duy trì và phát triển đúng cách, từ đó giúp đảm bảo rằng phần mềm đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+</ol>
+<p><strong>Câu II (5 điểm)</strong><br />
+Cửa hàng siêu thị tiện lợi X muốn xây dựng phần mềm "Quản lý Bán hàng" cho phép:<br />
+- Nhân viên bán hàng thực hiện chức năng:<br />
+  + Lập hóa đơn thanh toán<br />
+  + Tra cứu giá sản phẩm<br />
+- Quản lý cửa hàng thực hiện chức năng:<br />
+  + Quản lý danh mục sản phẩm (Thêm, sửa, xóa, cập nhật giá)<br />
+  + Nhập kho hàng hóa<br />
+  + Xem báo cáo doanh thu cuối ngày</p>
+<p><strong>THÔNG TIN SẢN PHẨM (Form nhập liệu)</strong><br />
+- Mã sản phẩm (Barcode): [điền]<br />
+- Tên sản phẩm: [điền]<br />
+- Đơn vị tính: [điền]<br />
+- Đơn giá bán: [điền]<br />
+- Số lượng tồn kho: [điền]<br />
+<em>Ghi chú:</em><br />
+- Mã sản phẩm không được trùng lặp.<br />
+- Đơn giá bán và Số lượng tồn kho không được là số âm.</p>
+<ol>
+<li><em>(1.5đ)</em> Hãy vẽ Sơ đồ Usecase cho phần mềm "Quản lý Bán hàng".</li>
+<li><em>(1.0đ)</em> Hãy vẽ Sơ đồ màn hình giao diện cho Quản lý cửa hàng.</li>
+<li><em>(2.5đ)</em> Hãy thực hiện cho chức năng "Quản lý danh mục sản phẩm" theo các bước sau:<br />
+   a. (1.0đ) Vẽ sơ đồ lớp hướng đối tượng.<br />
+   b. (0.5đ) Thiết kế cấu trúc dữ liệu lưu trữ.<br />
+   c. (0.5đ) Thiết kế Màn hình giao diện chức năng cập nhật giá sản phẩm.<br />
+   d. (0.5đ) Thiết kế TestCase cho trường hợp "Nhập giá bán là số âm" (Cập nhật thất bại).</li>
+</ol>
+<h3>ĐÁP ÁN ĐỀ 3</h3>
+<p><strong>Câu 1 (5 điểm)</strong><br />
+1. Dễ đọc, dễ hiểu, dễ mở rộng, giảm thiểu bug, thuận tiện cho việc bảo trì và làm việc nhóm.<br />
+- Mã nguồn sạch giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà phát triển dễ dàng hiểu và làm việc với mã nguồn, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.<br />
+- Mã nguồn sạch cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết.<br />
+- Mã nguồn sạch cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.<br />
+- Mã nguồn sạch cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+- Mã nguồn sạch cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+<ol>
+<li>Tính Đóng gói (Encapsulation), Tính Kế thừa (Inheritance), Tính Đa hình (Polymorphism), Tính Trừu tượng (Abstraction).</li>
+<li>Tính Đóng gói (Encapsulation): Là khả năng của một đối tượng để ẩn đi các chi tiết bên trong và chỉ cung cấp một giao diện công khai để tương tác với nó. Điều này giúp bảo vệ dữ liệu và giảm sự phụ thuộc giữa các phần của hệ thống.</li>
+<li>Tính Kế thừa (Inheritance): Là khả năng của một lớp con để kế thừa các thuộc tính và phương thức của một lớp cha. Điều này giúp tái sử dụng mã nguồn và tạo ra một cấu trúc phân cấp giữa các lớp.</li>
+<li>Tính Đa hình (Polymorphism): Là khả năng của một đối tượng để có thể được sử dụng như một đối tượng của lớp cha hoặc một lớp con. Điều này giúp tăng tính linh hoạt và khả năng mở rộng của hệ thống.</li>
+<li>
+<p>Tính Trừu tượng (Abstraction): Là khả năng của một đối tượng để ẩn đi các chi tiết không cần thiết và chỉ cung cấp các thuộc tính và phương thức cần thiết để tương tác với nó. Điều này giúp giảm sự phức tạp của hệ thống và tăng tính modularity của phần mềm.</p>
+</li>
+<li>
+<p>Quá trình thay đổi cấu trúc mã nguồn bên trong để code tốt hơn mà không làm thay đổi hành vi bên ngoài của hệ thống.</p>
+</li>
+<li>Tái cấu trúc mã nguồn giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp giảm thiểu rủi ro và tăng khả năng thành công của dự án phần mềm bằng cách đảm bảo rằng mã nguồn được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp tăng hiệu quả của quá trình phát triển phần mềm bằng cách giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Tái cấu trúc mã nguồn cũng giúp tạo ra một cơ sở để kiểm thử phần mềm và đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Tái cấu trúc mã nguồn cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Tìm ra lỗi (bug), đảm bảo phần mềm hoạt động đúng yêu cầu và nâng cao chất lượng phần mềm.</p>
+</li>
+<li>Kiểm thử phần mềm giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà phát triển xác định và sửa lỗi trong phần mềm, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan.</li>
+<li>Kiểm thử phần mềm cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử phần mềm cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử phần mềm cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification: "Chúng ta đang làm phần mềm đúng cách chứ?" (đúng quy trình). Validation: "Chúng ta đang làm đúng phần mềm mà khách hàng cần chứ?" (đúng nhu cầu).</li>
+<li>Verification tập trung vào việc đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation tập trung vào việc đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification thường được thực hiện trong giai đoạn phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường được thực hiện trong giai đoạn kiểm thử phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Verification thường được thực hiện bởi các nhà phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường được thực hiện bởi các nhà kiểm thử phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Verification thường tập trung vào việc kiểm tra các quy trình và phương pháp phát triển phần mềm để đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối. Validation thường tập trung vào việc kiểm tra các chức năng và tính năng của phần mềm để đảm bảo rằng phần mềm đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Kiểm thử dựa trên yêu cầu chức năng mà không cần biết cấu trúc code bên trong.</p>
+</li>
+<li>Kiểm thử hộp đen giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà kiểm thử tập trung vào việc kiểm tra các chức năng và tính năng của phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp đen cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử dựa trên việc xem xét chi trúc logic, thuật toán, mã nguồn bên trong của phần mềm.</li>
+<li>Kiểm thử hộp trắng giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp các nhà kiểm thử tập trung vào việc kiểm tra các chi tiết bên trong của phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà kiểm thử dễ dàng điều chỉnh các trường hợp kiểm thử khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử hộp trắng cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử đơn vị (Unit Test) -&gt; Kiểm thử tích hợp (Integration Test) -&gt; Kiểm thử hệ thống (System Test) -&gt; Kiểm thử chấp nhận (Acceptance Test).</li>
+<li>Kiểm thử đơn vị (Unit Test) là cấp độ kiểm thử đầu tiên, tập trung vào việc kiểm tra các thành phần nhỏ nhất của phần mềm, thường là các hàm hoặc phương thức riêng lẻ, để đảm bảo rằng chúng hoạt động đúng cách.</li>
+<li>Kiểm thử tích hợp (Integration Test) là cấp độ kiểm thử thứ hai, tập trung vào việc kiểm tra sự tương tác giữa các thành phần đã được kiểm thử đơn vị để đảm bảo rằng chúng hoạt động đúng cách khi kết hợp với nhau.</li>
+<li>Kiểm thử hệ thống (System Test) là cấp độ kiểm thử thứ ba, tập trung vào việc kiểm tra toàn bộ hệ thống phần mềm để đảm bảo rằng nó đáp ứng được các yêu cầu đã được mô tả trong mã nguồn và hoạt động đúng cách trong môi trường thực tế.</li>
+<li>Kiểm thử chấp nhận (Acceptance Test) là cấp độ kiểm thử cuối cùng, tập trung vào việc kiểm tra phần mềm từ góc độ của người dùng cuối để đảm bảo rằng nó đáp ứng được các yêu cầu của khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>ID, Tên testcase, Tiền điều kiện, Các bước thực hiện, Kết quả mong đợi, Kết quả thực tế.</li>
+<li>ID: Mã định danh duy nhất cho mỗi test case để dễ dàng quản lý và theo dõi.</li>
+<li>Tên testcase: Mô tả ngắn gọn về mục đích của test case để người kiểm thử có thể hiểu nhanh chóng về nội dung của test case.</li>
+<li>Tiền điều kiện: Các điều kiện hoặc trạng thái cần thiết trước khi thực hiện test case, giúp đảm bảo rằng test case được thực hiện trong môi trường phù hợp.</li>
+<li>Các bước thực hiện: Mô tả chi tiết các bước cần thực hiện để thực hiện test case, giúp người kiểm thử có thể thực hiện đúng cách và đảm bảo rằng test case được thực hiện một cách nhất quán.</li>
+<li>Kết quả mong đợi: Mô tả kết quả mà test case dự kiến sẽ đạt được nếu phần mềm hoạt động đúng cách, giúp người kiểm thử có thể so sánh với kết quả thực tế để xác định xem test case đã thành công hay thất bại.</li>
+<li>Kết quả thực tế: Mô tả kết quả thực tế sau khi thực hiện test case, giúp người kiểm thử có thể so sánh với kết quả mong đợi để xác định xem test case đã thành công hay thất bại, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Quá trình thay đổi, sửa lỗi, nâng cấp phần mềm sau khi đã bàn giao. Phân loại: Bảo trì sửa lỗi, Bảo trì thích nghi, Bảo trì hoàn thiện, Bảo trì phòng ngừa.</li>
+<li>Bảo trì phần mềm giúp đảm bảo rằng phần mềm được duy trì và phát triển đúng cách sau khi đã được bàn giao cho khách hàng và người dùng cuối bằng cách giúp các nhà phát triển sửa lỗi, nâng cấp tính năng và điều chỉnh phần mềm để đáp ứng được các yêu cầu mới hoặc thay đổi trong môi trường hoạt động của phần mềm.</li>
+<li>Bảo trì sửa lỗi là loại bảo trì tập trung vào việc sửa các lỗi hoặc sự cố đã được phát hiện trong phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm hoạt động đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì thích nghi là loại bảo trì tập trung vào việc điều chỉnh phần mềm để đáp ứng được các yêu cầu mới hoặc thay đổi trong môi trường hoạt động của phần mềm, giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì hoàn thiện là loại bảo trì tập trung vào việc nâng cấp tính năng hoặc cải thiện hiệu suất của phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì phòng ngừa là loại bảo trì tập trung vào việc thực hiện các biện pháp để ngăn chặn các lỗi hoặc sự cố có thể xảy ra trong phần mềm sau khi đã bàn giao, giúp đảm bảo rằng phần mềm được duy trì và phát triển đúng cách, từ đó giúp đảm bảo rằng phần mềm đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Bảo trì định kỳ là loại bảo trì tập trung vào việc thực hiện các công việc bảo trì theo lịch trình định kỳ, giúp đảm bảo rằng phần mềm luôn hoạt động ổn định và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+</ol>
+<p><strong>Câu 2 (5 điểm)</strong><br />
+1. (1.5đ) Actor: NV Bán hàng, Quản lý. Usecases tương ứng.<br />
+2. (1.0đ) Màn hình Dashboard chứa các mục báo cáo và nút quản lý.<br />
+3. a. (1.0đ) Lớp Sản phẩm, Lớp Hóa đơn. b. (0.5đ) Bảng Sản phẩm (Mã, Tên, Đơn vị, Giá, Tồn kho). c. (0.5đ) Form chọn sản phẩm và ô nhập giá mới. d. (0.5đ) Input Giá bán = -10000 -&gt; Expected: Báo lỗi "Giá bán không được âm", không lưu CSDL.</p>
+<hr />
+<h2>BỘ ĐỀ SỐ 4 (Trọng tâm: Đề tổng hợp toàn diện nâng cao)</h2>
+<h3>ĐỀ THI</h3>
+<p><strong>Câu I (5 điểm) - Trả lời ngắn gọn, súc tích các câu hỏi sau. Mỗi câu đúng được 0.5 điểm</strong><br />
+1. Đặc trưng của phần mềm khác với phần cứng máy tính như thế nào?<br />
+- Phần mềm là tập hợp các chương trình, dữ liệu và tài liệu hướng dẫn, trong khi phần cứng là các thiết bị vật lý như máy tính, máy chủ, thiết bị lưu trữ, v.v. Phần mềm có thể được cập nhật, sửa đổi dễ dàng hơn so với phần cứng.<br />
+2. Sprint trong quy trình Scrum (Agile) là gì?<br />
+- Sprint là một khoảng thời gian cố định (thường từ 1 đến 4 tuần) trong đó một nhóm phát triển làm việc để hoàn thành một tập hợp các tính năng hoặc yêu cầu cụ thể. Mỗi Sprint kết thúc bằng một buổi họp đánh giá và lập kế hoạch cho Sprint tiếp theo.</p>
+<ol>
+<li>Sơ đồ tuần tự (Sequence Diagram) được dùng để biểu diễn điều gì?</li>
+<li>
+<p>Sơ đồ tuần tự được dùng để biểu diễn sự tương tác giữa các đối tượng theo trình tự thời gian, giúp mô tả cách mà các đối tượng giao tiếp với nhau trong một kịch bản cụ thể.</p>
+</li>
+<li>
+<p>"Giao diện thân thiện" (User-friendly) thường được đánh giá qua những yếu tố nào?</p>
+</li>
+<li>
+<p>"Giao diện thân thiện" thường được đánh giá qua các yếu tố như tính dễ sử dụng, tính trực quan, khả năng tiếp cận, và sự nhất quán trong thiết kế.</p>
+</li>
+<li>
+<p>Nêu lợi ích của việc áp dụng Chuẩn lập trình (Coding Convention) trong dự án?</p>
+</li>
+<li>
+<p>Áp dụng Chuẩn lập trình giúp đảm bảo rằng mã nguồn được viết một cách nhất quán, dễ đọc và dễ hiểu cho tất cả các thành viên trong nhóm phát triển, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, đồng thời giúp tăng hiệu quả của quá trình phát triển phần mềm và giảm thiểu lỗi.</p>
+</li>
+<li>
+<p>Thiết kế dữ liệu bao gồm những mức nào? (Thiết kế mức khái niệm, logic, vật lý).</p>
+</li>
+<li>
+<p>Thiết kế dữ liệu bao gồm ba mức: Thiết kế CSDL khái niệm (Conceptual Data Design), Thiết kế CSDL logic (Logical Data Design), và Thiết kế CSDL vật lý (Physical Data Design). Mỗi mức thiết kế tập trung vào một khía cạnh khác nhau của việc tổ chức và lưu trữ dữ liệu trong hệ thống.</p>
+</li>
+<li>
+<p>Kiểm thử chấp nhận (Acceptance testing - UAT) do đối tượng nào thực hiện chủ yếu?</p>
+</li>
+<li>
+<p>Kiểm thử chấp nhận thường được thực hiện bởi người dùng cuối hoặc khách hàng để đảm bảo rằng phần mềm đáp ứng được các yêu cầu và mong đợi của họ.</p>
+</li>
+<li>
+<p>Tại sao việc phát hiện và sửa lỗi ở giai đoạn Kiểm thử lại tốn kém hơn giai đoạn Phân tích yêu cầu?</p>
+</li>
+<li>
+<p>Việc phát hiện và sửa lỗi ở giai đoạn Kiểm thử tốn kém hơn giai đoạn Phân tích yêu cầu vì lỗi càng phát hiện muộn thì càng tốn công thay đổi lại từ thiết kế, code, và phải kiểm thử lại toàn bộ hệ thống để đảm bảo rằng lỗi đã được sửa chữa đúng cách và không gây ra lỗi mới.</p>
+</li>
+<li>
+<p>GitHub, GitLab hay SVN là các công cụ hỗ trợ cho hoạt động gì trong Kỹ nghệ phần mềm?</p>
+</li>
+<li>
+<p>GitHub, GitLab hay SVN là các công cụ hỗ trợ cho hoạt động quản lý phiên bản mã nguồn (Version Control System) trong Kỹ nghệ phần mềm, giúp các nhà phát triển theo dõi và quản lý các thay đổi trong mã nguồn của dự án, đồng thời hỗ trợ làm việc nhóm hiệu quả hơn.</p>
+</li>
+<li>
+<p>Nêu 1 nguyên tắc đạo đức nghề nghiệp của Kỹ sư phần mềm.</p>
+</li>
+<li>Một nguyên tắc đạo đức nghề nghiệp của Kỹ sư phần mềm là "Hành động vì lợi ích cộng đồng", nghĩa là các kỹ sư phần mềm nên phát triển phần mềm với mục tiêu mang lại lợi ích cho xã hội và cộng đồng, đồng thời giữ bí mật dữ liệu khách hàng và cạnh tranh công bằng trong ngành công nghiệp phần mềm.</li>
+</ol>
+<p><strong>Câu II (5 điểm)</strong><br />
+Công ty công nghệ ABC cần phần mềm "Quản lý Nhân sự &amp; Chấm công" cho phép:<br />
+- Nhân viên thực hiện chức năng:<br />
+  + Xin nghỉ phép<br />
+  + Xem bảng chấm công cá nhân<br />
+- Bộ phận Hành chính nhân sự thực hiện chức năng:<br />
+  + Quản lý hồ sơ nhân viên (Thêm, sửa, xóa)<br />
+  + Duyệt đơn xin nghỉ phép<br />
+  + Xuất báo cáo lương tháng</p>
+<p><strong>HỒ SƠ NHÂN VIÊN (Form nhập liệu)</strong><br />
+- Mã nhân viên: [điền]<br />
+- Họ và tên: [điền]<br />
+- Căn cước công dân (CCCD): [điền]<br />
+- Chức vụ: [điền]<br />
+- Phòng ban: [điền]<br />
+- Lương cơ bản: [điền]<br />
+<em>Ghi chú:</em><br />
+- Mã nhân viên và CCCD là duy nhất. CCCD phải đủ 12 số.<br />
+- Lương cơ bản không được bỏ trống và phải &gt; 0.</p>
+<ol>
+<li><em>(1.5đ)</em> Hãy vẽ Sơ đồ Usecase cho phần mềm "Quản lý Nhân sự &amp; Chấm công".</li>
+<li><em>(1.0đ)</em> Hãy vẽ Sơ đồ màn hình giao diện cho Bộ phận Hành chính.</li>
+<li><em>(2.5đ)</em> Hãy thực hiện cho chức năng "Quản lý hồ sơ nhân viên" theo các bước sau:<br />
+   a. (1.0đ) Vẽ sơ đồ lớp hướng đối tượng.<br />
+   b. (0.5đ) Thiết kế cấu trúc bảng dữ liệu.<br />
+   c. (0.5đ) Thiết kế Màn hình giao diện chức năng Thêm mới nhân viên.<br />
+   d. (0.5đ) Thiết kế TestCase cho trường hợp "Nhập CCCD có 10 số" (Thêm nhân viên thất bại).</li>
+</ol>
+<h3>ĐÁP ÁN ĐỀ 4</h3>
+<p><strong>Câu 1 (5 điểm)</strong><br />
+1. Phần mềm là logic/trừu tượng, không bị "hao mòn" vật lý, nhưng bị "thoái hóa" do thay đổi môi trường.<br />
+- Phần mềm là tập hợp các chương trình, dữ liệu và tài liệu hướng dẫn, trong khi phần cứng là các thiết bị vật lý như máy tính, máy chủ, thiết bị lưu trữ, v.v. Phần mềm có thể được cập nhật, sửa đổi dễ dàng hơn so với phần cứng, nhưng cũng có thể bị lỗi thời hoặc không tương thích với các công nghệ mới nếu không được bảo trì và cập nhật thường xuyên.</p>
+<ol>
+<li>Là một khung thời gian ngắn hạn (thường từ 1-4 tuần) mà đội phát triển hoàn thành một lượng công việc (chức năng) nhất định.</li>
+<li>
+<p>Sprint là một khoảng thời gian cố định trong quy trình Scrum (Agile) mà trong đó một nhóm phát triển làm việc để hoàn thành một tập hợp các tính năng hoặc yêu cầu cụ thể. Mỗi Sprint kết thúc bằng một buổi họp đánh giá và lập kế hoạch cho Sprint tiếp theo, giúp đảm bảo rằng dự án tiến triển đúng hướng và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Biểu diễn sự tương tác giữa các đối tượng theo trình tự thời gian (truyền thông điệp).</p>
+</li>
+<li>Sơ đồ tuần tự (Sequence Diagram) được dùng để biểu diễn sự tương tác giữa các đối tượng theo trình tự thời gian, giúp mô tả cách mà các đối tượng giao tiếp với nhau trong một kịch bản cụ thể, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Sơ đồ tuần tự cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Sơ đồ tuần tự cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh sơ đồ khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Sơ đồ tuần tự cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Dễ học, dễ nhớ, làm việc hiệu quả, ít lỗi, gây sự hài lòng.</li>
+<li>"Giao diện thân thiện" giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối bằng cách giúp người dùng dễ dàng sử dụng và tương tác với phần mềm, từ đó tăng sự hài lòng và giảm thiểu sự hiểu lầm giữa người dùng và phần mềm.</li>
+<li>"Giao diện thân thiện" cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>"Giao diện thân thiện" cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh giao diện khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>"Giao diện thân thiện" cũng giúp cải thiện chất lượng của phần mềm bằng cách đảm bảo rằng phần mềm được viết một cách có cấu trúc và có thể kiểm soát được, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Code đồng nhất, dễ đọc chéo, giảm xung đột khi merge code, dễ bàn giao.</p>
+</li>
+<li>Áp dụng Chuẩn lập trình giúp đảm bảo rằng mã nguồn được viết một cách nhất quán, dễ đọc và dễ hiểu cho tất cả các thành viên trong nhóm phát triển, từ đó giảm thiểu sự hiểu lầm và cải thiện giao tiếp giữa các bên liên quan, đồng thời giúp tăng hiệu quả của quá trình phát triển phần mềm và giảm thiểu lỗi.</li>
+<li>Áp dụng Chuẩn lập trình cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Áp dụng Chuẩn lập trình cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh mã nguồn khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Thiết kế CSDL khái niệm (ERD), Thiết kế CSDL logic (Relational Schema), Thiết kế CSDL vật lý.</p>
+</li>
+<li>Thiết kế CSDL khái niệm (Conceptual Data Design) tập trung vào việc xác định các thực thể, thuộc tính và mối quan hệ giữa chúng trong hệ thống, giúp tạo ra một mô hình dữ liệu tổng quát và dễ hiểu cho tất cả các bên liên quan.</li>
+<li>Thiết kế CSDL logic (Logical Data Design) tập trung vào việc chuyển đổi mô hình dữ liệu khái niệm thành một mô hình dữ liệu logic, thường là một sơ đồ quan hệ (Relational Schema), giúp đảm bảo rằng dữ liệu được tổ chức một cách hợp lý và có thể truy xuất hiệu quả.</li>
+<li>
+<p>Thiết kế CSDL vật lý tập trung vào việc triển khai mô hình dữ liệu logic vào một hệ quản trị cơ sở dữ liệu cụ thể, bao gồm việc xác định các bảng, chỉ mục, và các cấu trúc lưu trữ khác để đảm bảo hiệu suất và khả năng mở rộng của hệ thống.</p>
+</li>
+<li>
+<p>Do khách hàng (Customer) hoặc người dùng cuối (End-user) thực hiện để quyết định có nhận phần mềm hay không.</p>
+</li>
+<li>Kiểm thử chấp nhận (Acceptance testing - UAT) thường được thực hiện bởi người dùng cuối hoặc khách hàng để đảm bảo rằng phần mềm đáp ứng được các yêu cầu và mong đợi của họ, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Kiểm thử chấp nhận cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Kiểm thử chấp nhận cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh phần mềm khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Vì lỗi càng phát hiện muộn thì càng tốn công thay đổi lại từ thiết kế, code, và phải kiểm thử lại toàn bộ.</p>
+</li>
+<li>Việc phát hiện và sửa lỗi ở giai đoạn Kiểm thử tốn kém hơn giai đoạn Phân tích yêu cầu vì lỗi càng phát hiện muộn thì càng tốn công thay đổi lại từ thiết kế, code, và phải kiểm thử lại toàn bộ hệ thống để đảm bảo rằng lỗi đã được sửa chữa đúng cách và không gây ra lỗi mới, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Việc phát hiện và sửa lỗi ở giai đoạn Kiểm thử cũng có thể ảnh hưởng đến tiến độ của dự án, từ đó gây ra sự chậm trễ trong việc bàn giao phần mềm cho khách hàng và người dùng cuối, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Quản lý phiên bản mã nguồn (Version Control System).</p>
+</li>
+<li>GitHub, GitLab hay SVN là các công cụ hỗ trợ cho hoạt động quản lý phiên bản mã nguồn (Version Control System) trong Kỹ nghệ phần mềm, giúp các nhà phát triển theo dõi và quản lý các thay đổi trong mã nguồn của dự án, đồng thời hỗ trợ làm việc nhóm hiệu quả hơn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>
+<p>Các công cụ quản lý phiên bản mã nguồn cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</p>
+</li>
+<li>
+<p>Hành động vì lợi ích cộng đồng; Giữ bí mật dữ liệu khách hàng; Cạnh tranh công bằng.</p>
+</li>
+<li>Một nguyên tắc đạo đức nghề nghiệp của Kỹ sư phần mềm là "Hành động vì lợi ích cộng đồng", nghĩa là các kỹ sư phần mềm nên phát triển phần mềm với mục tiêu mang lại lợi ích cho xã hội và cộng đồng, đồng thời giữ bí mật dữ liệu khách hàng và cạnh tranh công bằng trong ngành công nghiệp phần mềm, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên tắc này cũng giúp tạo ra một cơ sở để đảm bảo rằng phần mềm đáp ứng được các yêu cầu đã được mô tả trong mã nguồn, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.</li>
+<li>Nguyên tắc này cũng giúp tăng tính linh hoạt và khả năng thích nghi với thay đổi trong quá trình phát triển phần mềm bằng cách cho phép các nhà phát triển dễ dàng điều chỉnh phần mềm khi cần thiết, từ đó giúp đảm bảo rằng phần mềm được phát triển đúng cách và đáp ứng được nhu cầu của khách hàng và người dùng cuối.<br />
+<strong>Câu 2 (5 điểm)</strong></li>
+<li>(1.5đ) Actor: Nhân viên, BP Nhân sự. Usecase tương ứng.</li>
+<li>(1.0đ) Giao diện Dashboard hành chính có các menu Quản lý hồ sơ, Duyệt phép, Báo cáo lương.</li>
+<li>a. (1.0đ) Lớp Nhân viên, Lớp Đơn nghỉ phép, Lớp Phòng ban. b. (0.5đ) Bảng NhanVien (MaNV, HoTen, CCCD, ChucVu, MaPhanBan, LuongCB). c. (0.5đ) Form nhập liệu với các ràng buộc hiển thị (*). d. (0.5đ) Testcase: Input CCCD = 0123456789 -&gt; Expected output: Báo lỗi "CCCD phải bao gồm 12 chữ số".</li>
+</ol>
+        </div>
+
+<div style="text-align: center; margin-top: 60px; font-size: 1.2em; border-top: 2px solid var(--primary); padding-top: 20px;">
+            <p><strong>BẠN ĐÃ TRANG BỊ ĐẦY ĐỦ VŨ KHÍ ĐỂ ĐẠT ĐIỂM A+!</strong></p>
+            <p><em>Mẹo thi: Vào phòng thi, lấy giấy nháp nhẩm ngay V(G) = E - N + 2 và thần chú Usecase (Include hướng vào, Extend hướng về).</em></p>
+            <button onclick="window.print()" style="padding: 10px 20px; font-size: 1.1em; background-color: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">🖨️ In Giáo Trình (Bấm Ctrl+P)</button>
+        </div>
+    </div>
+</body>
+</html>

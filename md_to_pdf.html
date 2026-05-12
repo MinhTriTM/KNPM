@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng Hợp Tài Liệu KNPM Toàn Diện - In PDF</title>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        /* === RESET & BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', Arial, sans-serif;
+            font-size: 12.5px;
+            line-height: 1.55;
+            color: #1a1a2e;
+            background: #fff;
+            padding: 15px 22px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+
+        /* === HEADINGS === */
+        h1 {
+            font-size: 19px; color: #0d1b2a;
+            text-align: center;
+            border-bottom: 3px solid #1b4965;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            margin-top: 10px;
+            page-break-after: avoid;
+        }
+        h2 {
+            font-size: 15px; color: #1b4965;
+            border-bottom: 2px solid #62b6cb;
+            padding-bottom: 3px;
+            margin-top: 14px; margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+        h3 {
+            font-size: 13.5px; color: #274c77;
+            margin-top: 10px; margin-bottom: 4px;
+            page-break-after: avoid;
+        }
+        h4 {
+            font-size: 12.5px; color: #3a6ea5;
+            margin-top: 8px; margin-bottom: 3px;
+            page-break-after: avoid;
+        }
+
+        /* === TEXT === */
+        p { margin-bottom: 4px; text-align: justify; }
+        em { color: #555; }
+        strong { color: #0d1b2a; }
+        ul, ol { margin-left: 18px; margin-bottom: 4px; }
+        li { margin-bottom: 2px; }
+        li > ul, li > ol { margin-top: 1px; margin-bottom: 1px; }
+
+        /* === TABLE === */
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 6px 0; font-size: 11px;
+            page-break-inside: avoid;
+        }
+        th {
+            background: #1b4965; color: #fff;
+            padding: 4px 6px; text-align: left;
+            font-weight: 600; font-size: 10.5px;
+        }
+        td {
+            padding: 3px 6px; border: 1px solid #ccc;
+            vertical-align: top;
+        }
+        tr:nth-child(even) td { background: #f0f4f8; }
+
+        /* === CODE === */
+        code {
+            background: #e8eef3; padding: 1px 3px;
+            border-radius: 2px;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 11px; color: #c7254e;
+        }
+        pre {
+            background: #f5f7fa;
+            border: 1px solid #d0d7de;
+            border-left: 3px solid #1b4965;
+            padding: 6px 10px;
+            margin: 5px 0;
+            overflow-x: auto;
+            border-radius: 3px;
+            page-break-inside: avoid;
+            font-size: 10.5px; line-height: 1.45;
+        }
+        pre code {
+            background: none; padding: 0;
+            color: #24292f; font-size: 10.5px;
+        }
+
+        /* === MERMAID === */
+        .mermaid {
+            text-align: center;
+            margin: 6px 0;
+            page-break-inside: avoid;
+        }
+        .mermaid svg { max-width: 100%; height: auto; }
+        .mermaid-fallback {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #6c757d;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 5px 0;
+            font-size: 10.5px;
+            color: #495057;
+            page-break-inside: avoid;
+            text-align: left;
+        }
+        .mermaid-fallback .mermaid-title {
+            font-weight: 700;
+            color: #1b4965;
+            margin-bottom: 4px;
+            font-size: 11px;
+        }
+        .mermaid-fallback pre {
+            background: #fff;
+            border: none;
+            border-left: 2px solid #adb5bd;
+            padding: 4px 8px;
+            margin: 4px 0 0 0;
+            font-size: 9.5px;
+            line-height: 1.35;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* === MISC === */
+        hr { border: none; border-top: 1.5px solid #bee3f8; margin: 12px 0; }
+        blockquote {
+            border-left: 3px solid #62b6cb;
+            padding: 4px 10px;
+            margin: 5px 0;
+            background: #f0f9ff;
+            color: #333;
+            font-size: 11.5px;
+        }
+
+        /* === PRINT === */
+        @media print {
+            body {
+                padding: 0; margin: 0;
+                font-size: 10.5px; line-height: 1.45;
+                max-width: none;
+            }
+            h1 { font-size: 15px; margin-top: 0; }
+            h2 { font-size: 13px; margin-top: 10px; }
+            h3 { font-size: 11.5px; margin-top: 8px; }
+            h4 { font-size: 10.5px; }
+            p { margin-bottom: 3px; }
+            ul, ol { margin-left: 15px; margin-bottom: 3px; }
+            li { margin-bottom: 1px; }
+            pre { font-size: 9px; padding: 4px 6px; line-height: 1.35; }
+            pre code { font-size: 9px; }
+            table { font-size: 9px; }
+            th { padding: 2px 4px; font-size: 9px; }
+            td { padding: 2px 4px; }
+            .mermaid svg { max-height: 200px; }
+            .mermaid-fallback { padding: 5px 8px; }
+            .mermaid-fallback pre { font-size: 8.5px; }
+            h1, h2, h3, h4 { page-break-after: avoid; }
+            table, pre, .mermaid, .mermaid-fallback { page-break-inside: avoid; }
+            p { orphans: 3; widows: 3; }
+            .no-print { display: none !important; }
+            @page { size: A4; margin: 8mm 10mm; }
+            hr { margin: 8px 0; }
+        }
+
+        /* === TOOLBAR === */
+        .toolbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, #1b4965, #3a6ea5);
+            color: #fff;
+            padding: 8px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .toolbar span { font-size: 13px; font-weight: 600; }
+        .toolbar .info { font-size: 11px; opacity: 0.85; }
+        .toolbar button {
+            background: #fff; color: #1b4965;
+            border: none; padding: 6px 20px;
+            font-size: 13px; font-weight: 700;
+            border-radius: 5px; cursor: pointer;
+            margin-left: 8px;
+        }
+        .toolbar button:hover { background: #bee3f8; }
+        #content { margin-top: 48px; }
+
+        /* === LOADING === */
+        #loading {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #fff;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 99999;
+            font-size: 16px; color: #1b4965;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #e0e0e0;
+            border-top: 3px solid #1b4965;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 12px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #load-status { font-size: 12px; color: #888; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Đang render tài liệu & sơ đồ Mermaid...</p>
+        <div id="load-status"></div>
+    </div>
+    <div class="toolbar no-print">
+        <div>
+            <span>📄 Tổng Hợp Tài Liệu KNPM Toàn Diện</span>
+            <div class="info" id="toolbar-info"></div>
+        </div>
+        <div>
+            <button onclick="window.print()">🖨️ In PDF (Ctrl+P)</button>
+        </div>
+    </div>
+    <div id="content"></div>
+
+    <script>
+    // === Bước 1: Đọc file MD ===
+    function loadMD() {
+        var mdUrl = 'Tong_Hop_Tai_Lieu_KNPM_Toan_Dien_Full.md';
+        var status = document.getElementById('load-status');
+
+        // Thử fetch (cho HTTP server)
+        try {
+            status.textContent = 'Đang tải file Markdown...';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', mdUrl, false);
+            xhr.send();
+            if (xhr.status === 200 || xhr.status === 0) {
+                var text = xhr.responseText;
+                if (text && text.length > 100) {
+                    status.textContent = 'Đã tải ' + (text.length / 1024).toFixed(0) + 'KB';
+                    return text;
+                }
+            }
+        } catch(e) {
+            console.warn('XHR failed:', e);
+        }
+
+        // Thử với đường dẫn tuyệt đối
+        try {
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open('GET', './' + mdUrl, false);
+            xhr2.send();
+            if (xhr2.status === 200 || xhr2.status === 0) {
+                var text2 = xhr2.responseText;
+                if (text2 && text2.length > 100) {
+                    return text2;
+                }
+            }
+        } catch(e2) {
+            console.warn('XHR2 failed:', e2);
+        }
+
+        return null;
+    }
+
+    // === Bước 2: Xác định loại diagram từ mermaid code ===
+    function getDiagramTitle(code) {
+        var firstLine = code.split('\n')[0].trim();
+        if (firstLine.startsWith('usecaseDiagram')) return '📊 Sơ đồ Use-case (Usecase Diagram)';
+        if (firstLine.startsWith('classDiagram')) return '📐 Sơ đồ Lớp (Class Diagram)';
+        if (firstLine.startsWith('erDiagram')) return '🗄️ Sơ đồ ER (Entity Relationship Diagram)';
+        if (firstLine.startsWith('sequenceDiagram')) return '🔄 Sơ đồ Tuần tự (Sequence Diagram)';
+        if (firstLine.startsWith('flowchart') || firstLine.startsWith('graph')) return '📋 Sơ đồ Luồng (Flowchart)';
+        if (firstLine.startsWith('stateDiagram')) return '🔲 Sơ đồ Trạng thái (State Diagram)';
+        return '📊 Sơ đồ';
+    }
+
+    // === Bước 3: Tạo fallback HTML cho diagram không render được ===
+    function createFallback(code) {
+        var title = getDiagramTitle(code);
+        var escapedCode = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return '<div class="mermaid-fallback">' +
+            '<div class="mermaid-title">' + title + '</div>' +
+            '<pre>' + escapedCode + '</pre></div>';
+    }
+
+    // === MAIN ===
+    (function() {
+        var raw = loadMD();
+
+        if (!raw) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').innerHTML =
+                '<h1 style="color:#c0392b;margin-top:40px">⚠️ Không đọc được file Markdown</h1>' +
+                '<div style="text-align:center;padding:20px;font-size:14px;line-height:1.8">' +
+                '<p><strong>Nguyên nhân:</strong> Trình duyệt chặn việc đọc file qua giao thức <code>file://</code> (CORS policy).</p>' +
+                '<hr style="margin:15px 0">' +
+                '<p><strong>✅ Giải pháp:</strong> Mở bằng HTTP server thay vì mở file trực tiếp.</p>' +
+                '<p>Chạy lệnh sau trong thư mục KNPM:</p>' +
+                '<pre style="text-align:left;max-width:500px;margin:10px auto;font-size:13px">npx -y serve .</pre>' +
+                '<p>Sau đó mở trình duyệt tại:</p>' +
+                '<pre style="text-align:left;max-width:500px;margin:10px auto;font-size:13px">http://localhost:3000/md_to_pdf.html</pre>' +
+                '</div>';
+            return;
+        }
+
+        var status = document.getElementById('load-status');
+        status.textContent = 'Đang render Markdown...';
+
+        // Tách và đánh dấu mermaid blocks
+        var mermaidIndex = 0;
+        var mermaidCodes = {};
+        var processed = raw.replace(/```mermaid\s*\n([\s\S]*?)```/g, function(match, code) {
+            var id = 'mmd-' + mermaidIndex;
+            mermaidCodes[id] = code.trim();
+            mermaidIndex++;
+            return '\n<div class="mermaid" id="' + id + '">' + code.trim() + '</div>\n';
+        });
+
+        // Render markdown
+        var md = window.markdownit({ html: true, breaks: true, typographer: true });
+        document.getElementById('content').innerHTML = md.render(processed);
+
+        var totalMermaid = Object.keys(mermaidCodes).length;
+        document.getElementById('toolbar-info').textContent =
+            (raw.length / 1024).toFixed(0) + 'KB | ' + totalMermaid + ' sơ đồ Mermaid';
+
+        if (totalMermaid === 0) {
+            document.getElementById('loading').style.display = 'none';
+            return;
+        }
+
+        status.textContent = 'Đang render ' + totalMermaid + ' sơ đồ Mermaid...';
+
+        // Khởi tạo Mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+            fontSize: 11,
+            flowchart: { useMaxWidth: true, htmlLabels: true },
+            sequence: { useMaxWidth: true },
+            er: { useMaxWidth: true }
+        });
+
+        // Render từng mermaid block riêng lẻ
+        setTimeout(function() {
+            var ids = Object.keys(mermaidCodes);
+            var completed = 0;
+
+            function renderNext(index) {
+                if (index >= ids.length) {
+                    document.getElementById('loading').style.display = 'none';
+                    status.textContent = 'Hoàn tất!';
+                    return;
+                }
+
+                var id = ids[index];
+                var code = mermaidCodes[id];
+                var div = document.getElementById(id);
+
+                if (!div) {
+                    completed++;
+                    status.textContent = 'Sơ đồ ' + completed + '/' + totalMermaid;
+                    renderNext(index + 1);
+                    return;
+                }
+
+                // usecaseDiagram không được Mermaid hỗ trợ chính thức
+                var firstLine = code.split('\n')[0].trim();
+                if (firstLine.startsWith('usecaseDiagram')) {
+                    div.outerHTML = createFallback(code);
+                    completed++;
+                    status.textContent = 'Sơ đồ ' + completed + '/' + totalMermaid;
+                    renderNext(index + 1);
+                    return;
+                }
+
+                // Thử render bằng Mermaid
+                try {
+                    mermaid.render('svg-' + index, code).then(function(result) {
+                        div.innerHTML = result.svg;
+                        completed++;
+                        status.textContent = 'Sơ đồ ' + completed + '/' + totalMermaid;
+                        renderNext(index + 1);
+                    }).catch(function(err) {
+                        console.warn('Mermaid error for ' + id + ':', err);
+                        div.outerHTML = createFallback(code);
+                        completed++;
+                        status.textContent = 'Sơ đồ ' + completed + '/' + totalMermaid;
+                        renderNext(index + 1);
+                    });
+                } catch(e) {
+                    console.warn('Mermaid exception for ' + id + ':', e);
+                    div.outerHTML = createFallback(code);
+                    completed++;
+                    status.textContent = 'Sơ đồ ' + completed + '/' + totalMermaid;
+                    renderNext(index + 1);
+                }
+            }
+
+            renderNext(0);
+
+            // Fallback timeout - đảm bảo loading biến mất sau 30 giây
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+            }, 30000);
+        }, 500);
+    })();
+    </script>
+</body>
+</html>

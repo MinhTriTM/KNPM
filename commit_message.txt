@@ -1,0 +1,12 @@
+Generate Chapters 1-3 for Software Engineering question bank
+
+Created comprehensive question banks for the first 3 chapters of Software Engineering:
+- `chương 1.md`: Overview of Software Engineering
+- `chương 2.md`: Software Process & Agile
+- `chương 3.md`: Requirements Engineering
+
+Each chapter includes:
+- 25 short essay questions with answers
+- 200 multiple-choice questions with answers
+
+The files are formatted in Markdown as requested.
