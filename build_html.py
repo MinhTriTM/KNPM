@@ -176,7 +176,7 @@ size_kb = os.path.getsize(html_path) / 1024
 print(f"      File: KNPM_Print.html ({size_kb:.0f} KB)")
 
 print("[3/3] Đang mở file trong trình duyệt...")
-os.startfile(html_path)
+# os.startfile(html_path)
 
 print()
 print("✅ HOÀN THÀNH!")
@@ -189,4 +189,4 @@ print("   4. Layout: Portrait")
 print("   5. Margins: Default hoặc Minimum")
 print("   6. Nhấn Save")
 print()
-input("Nhấn Enter để thoát...")
+# input
