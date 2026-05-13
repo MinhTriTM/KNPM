@@ -50,10 +50,11 @@ questions = [
     ("Cuối cùng, 'Thiết kế phần mềm' tốt không phải là làm cho hệ thống trông phức tạp để thể hiện trí tuệ, mà là:", "Làm hệ thống chạy nhanh nhất thế giới.", "Giấu đi sự phức tạp đó đằng sau những giao diện (Interface) đơn giản, thanh lịch, biến một bài toán khổng lồ thành những khối xếp hình dễ quản lý.", "Làm cho không ai đọc được code.", "Bắt khách hàng trả nhiều tiền.", "B")
 ]
 
-new_part2_tail = ""
-for i, (q, a, b, c, d, ans) in enumerate(questions, 165):
-    new_part2_tail += f"**Câu {i}:** {q}\n"
-    new_part2_tail += f"A. {a}\nB. {b}\nC. {c}\nD. {d}\n*Đáp án: {ans}*\n\n"
+new_part2_tail = "".join(
+    f"**Câu {i}:** {q}\n"
+    f"A. {a}\nB. {b}\nC. {c}\nD. {d}\n*Đáp án: {ans}*\n\n"
+    for i, (q, a, b, c, d, ans) in enumerate(questions, 165)
+)
 
 with open("chương 5.md", "w", encoding="utf-8") as f:
     f.write(part1 + "## PHẦN 2: Câu hỏi trắc nghiệm (Multiple Choice)\n" + part2_head + new_part2_tail)
