@@ -25,12 +25,6 @@ for line in lines:
         # Answer
         ans = line[2:].strip()
         html_content.append(f"<p style=\"margin-left: 20px; border-left: 3px solid var(--secondary); padding-left: 10px;\"><strong>Đáp án:</strong> {ans}</p>")
-    elif line.startswith('*(') and line.endswith(')*'):
-        pass
-    elif line.startswith('#'):
-        pass
-    else:
-        pass # ignore other lines for now
 
 html_to_inject = "\n".join(html_content)
 
